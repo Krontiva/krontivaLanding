@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Krontiva Africa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:     #0d1f13;
+      --dark-mid: #193326;
+      --accent:   #3a7230;
+      --accent-lt:#6db84a;
+      --green-bg: #f2f8ef;
+      --text:     #111827;
+      --body:     #4b5563;
+      --muted:    #6b7280;
+      --border:   #e5e7eb;
+      --white:    #ffffff;
+      --grad:        linear-gradient(135deg, #2a5c1a 0%, #6ebb06 65%, #9ceb32 100%);
+      --grad-text:   linear-gradient(135deg, #6ebb06 0%, #9ceb32 100%);
+    }
+
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); }
+    a    { text-decoration: none; color: inherit; }
+
+    /* ─── NAV ─── */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 64px; height: 66px; background: var(--white);
+      border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 300;
+    }
+    .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; color: var(--dark); letter-spacing: -.3px; }
+    .logo svg { width: 30px; height: 30px; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 36px; list-style: none; font-size: 14px; font-weight: 500; }
+    .nav-links a { color: #374151; transition: color .2s; }
+    .nav-links a:hover, .nav-links .active a { color: var(--dark); }
+    .btn-nav {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--grad); color: var(--white);
+      padding: 10px 22px; border-radius: 100px; font-size: 14px; font-weight: 600; transition: opacity .2s;
+    }
+    .btn-nav:hover { opacity: .88; }
+    .btn-nav svg { width: 13px; height: 13px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--white);
+      padding: 100px 64px 80px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .page-tag {
+      display: inline-block;
+      border: 1.5px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 58px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -.5px;
+      max-width: 780px;
+      margin-bottom: 40px;
+    }
+    .scroll-arrow {
+      width: 40px; height: 40px;
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      transition: background .2s, border-color .2s, color .2s;
+      cursor: pointer;
+    }
+    .scroll-arrow:hover { background: var(--dark); border-color: var(--dark); color: var(--white); }
+
+    /* ─── DARK SECTION ─── */
+    .dark-section {
+      background: linear-gradient(135deg, var(--dark) 0%, #1a3d10 55%, #2e6010 100%);
+      color: var(--white);
+      padding: 80px 64px;
+    }
+    .dark-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      max-width: 1100px;
+    }
+    .dark-section h2 {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -.3px;
+      margin-bottom: 24px;
+    }
+    .dark-section p {
+      font-size: 15px;
+      color: rgba(255,255,255,.7);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    /* ─── VISION & MISSION ─── */
+    .vm-section {
+      background: linear-gradient(160deg, #0d1f13 0%, #152d18 40%, #1e4a10 80%, #2d6a0e 100%);
+      padding: 80px 64px;
+      color: var(--white);
+    }
+    .vm-inner { max-width: 1100px; }
+    .vm-section h2 {
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 800;
+      margin-bottom: 48px;
+      letter-spacing: -.3px;
+    }
+    .vm-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+    .vm-col h3 {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+    .vm-col p { font-size: 15px; color: rgba(255,255,255,.7); line-height: 1.75; }
+    .vm-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; padding: 0; }
+    .vm-col ul li {
+      font-size: 15px;
+      color: rgba(255,255,255,.7);
+      line-height: 1.65;
+      padding-left: 20px;
+      position: relative;
+    }
+    .vm-col ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent-lt);
+    }
+
+    /* ─── WHAT SETS US APART ─── */
+    .apart-section { padding: 88px 64px; }
+    .apart-section h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: -.4px;
+      margin-bottom: 56px;
+    }
+    .apart-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 780px) { .apart-grid { grid-template-columns: 1fr; } }
+    .apart-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px 32px;
+      text-align: center;
+      transition: box-shadow .2s;
+    }
+    .apart-card:hover { box-shadow: 0 6px 28px rgba(0,0,0,.07); }
+    .apart-icon {
+      width: 56px; height: 56px;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, #f2f8ef, #e8f5e0);
+      border: 1.5px solid #c8e8b0;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .apart-icon svg { width: 28px; height: 28px; stroke: #4a8f05; fill: none; stroke-width: 1.8; }
+    .apart-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 14px; }
+    .apart-card p { font-size: 14px; color: var(--body); line-height: 1.7; }
+
+    /* ─── MEET THE TEAM CTA ─── */
+    .team-cta {
+      background: linear-gradient(135deg, var(--dark) 0%, #1a3d0e 40%, #3d7a08 75%, #6ebb06 100%);
+      padding: 80px 64px;
+      text-align: center;
+    }
+    .team-cta p { font-size: 15px; color: rgba(255,255,255,.5); margin-bottom: 8px; }
+    .team-cta h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 800; color: var(--white); margin-bottom: 32px; letter-spacing: -.4px; }
+    .btn-green {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,.15);
+      border: 1.5px solid rgba(255,255,255,.4);
+      color: var(--white);
+      padding: 13px 30px; border-radius: 100px; font-size: 14px; font-weight: 600;
+      transition: background .2s, border-color .2s;
+    }
+    .btn-green:hover { background: rgba(255,255,255,.25); border-color: rgba(255,255,255,.7); }
+    .btn-green svg { width: 13px; height: 13px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark); border-top: 1px solid rgba(255,255,255,.07);
+      padding: 64px 64px 0; color: rgba(255,255,255,.75);
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr; gap: 48px;
+      padding-bottom: 52px; border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .f-brand p { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,.5); margin: 16px 0 20px; max-width: 260px; }
+    .f-social { display: flex; gap: 20px; }
+    .f-social a { font-size: 13px; color: rgba(255,255,255,.5); transition: color .2s; }
+    .f-social a:hover { color: var(--white); }
+    .f-col h4 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 18px; }
+    .f-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .f-col ul a { font-size: 13px; color: rgba(255,255,255,.5); transition: color .2s; }
+    .f-col ul a:hover { color: var(--white); }
+    .footer-bar {
+      display: flex; justify-content: space-between; padding: 18px 0;
+      font-size: 12px; color: rgba(255,255,255,.35);
+    }
+    .footer-bar a { color: rgba(255,255,255,.35); transition: color .2s; }
+    .footer-bar a:hover { color: rgba(255,255,255,.7); }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="../" class="logo">
+    <svg viewBox="0 0 30 30" fill="none">
+      <circle cx="15" cy="15" r="14" fill="#0d1f13"/>
+      <circle cx="15" cy="15" r="10" fill="#3a7230" opacity=".55"/>
+      <path d="M11 9 L15 15 L11 21 H14 L18 15 L14 9 Z" fill="#fff"/>
+    </svg>
+    Krontiva
+  </a>
+  <ul class="nav-links">
+    <li class="active"><a href="../about/">Company</a></li>
+    <li><a href="../resources/">Resources</a></li>
+  </ul>
+  <a href="../contact/" class="btn-nav">
+    Get Started
+    <svg viewBox="0 0 13 13" fill="none"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="top">
+  <span class="page-tag">Company</span>
+  <h1>Delivering sustainable change for institutions and strategic growth sectors across Africa.</h1>
+  <a href="#story" class="scroll-arrow" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'});return false;">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</section>
+
+<!-- ═══ DARK INTRO SECTION ═══ -->
+<section class="dark-section" id="story">
+  <div class="dark-inner">
+    <div>
+      <h2>Driving Sustainable Business Transformation for Africa</h2>
+      <p>As a collective of innovative thinkers and change practitioners, we bring deep industry knowledge and extensive experience in complex transformation delivery. We partner with our clients to navigate the rapidly evolving African business landscape, helping them unlock new opportunities, optimise operations, and achieve lasting competitive advantage.</p>
+      <p>Our team combines strategic thinking with hands-on execution capabilities, ensuring that transformation initiatives deliver measurable business results. We don't just provide recommendations — we work alongside our clients to implement solutions and build organisational capabilities for sustained success.</p>
+    </div>
+    <div>
+      <h2>Our Vision &amp; Mission</h2>
+      <h3 style="font-size:13px;font-weight:700;color:var(--accent-lt);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;margin-top:4px;">Vision</h3>
+      <p>To be Africa's most trusted partner in business transformation, recognised for creating digitally connected ecosystems where financial services are accessible, affordable, and secure — empowering businesses and communities to thrive in the digital economy.</p>
+      <h3 style="font-size:13px;font-weight:700;color:var(--accent-lt);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;margin-top:28px;">Mission</h3>
+      <p>We bridge critical gaps in Africa's business landscape by delivering integrated consulting and technology services that enable our clients to:</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VISION & MISSION FULL ═══ -->
+<section class="vm-section">
+  <div class="vm-inner">
+    <h2>Our Vision &amp; Mission</h2>
+    <div class="vm-cols">
+      <div class="vm-col">
+        <h3>Vision</h3>
+        <p>To be Africa's most trusted partner in business transformation, recognised for creating digitally connected ecosystems where financial services are accessible, affordable, and secure — empowering businesses and communities to thrive in the digital economy.</p>
+      </div>
+      <div class="vm-col">
+        <h3>Mission</h3>
+        <p>We bridge critical gaps in Africa's business landscape by delivering integrated consulting and technology services that enable our clients to:</p>
+        <ul style="margin-top:16px;">
+          <li>Transform operations to achieve superior efficiency and resilience</li>
+          <li>Enhance customer experiences through digital innovation</li>
+          <li>Unlock new revenue streams and business models</li>
+          <li>Build sustainable competitive advantage in rapidly evolving markets</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHAT SETS US APART ═══ -->
+<section class="apart-section">
+  <h2>What Sets Us Apart</h2>
+  <div class="apart-grid">
+    <div class="apart-card">
+      <div class="apart-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>Excellence</h3>
+      <p>We are committed to delivering exceptional results. We set high standards for ourselves and continuously invest in developing our capabilities to exceed client expectations. Quality is non-negotiable in everything we do.</p>
+    </div>
+    <div class="apart-card">
+      <div class="apart-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Integrity</h3>
+      <p>We conduct our business with honesty, transparency, and ethical behaviour. We do what's right for our clients even when it's difficult, providing candid advice and maintaining the highest professional standards.</p>
+    </div>
+    <div class="apart-card">
+      <div class="apart-icon">
+        <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      </div>
+      <h3>Innovation</h3>
+      <p>We embrace change and continuously seek better ways to solve complex business challenges. We stay at the forefront of technology and business practices, bringing fresh thinking and creative solutions to our clients.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MEET THE TEAM CTA ═══ -->
+<section class="team-cta">
+  <p>Meet our team</p>
+  <h2>Integrity you can trust, proficiency you can depend on.</h2>
+  <a href="#" class="btn-green">
+    Learn More
+    <svg viewBox="0 0 13 13" fill="none"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-grid">
+    <div class="f-brand">
+      <a href="../" style="display:flex;align-items:center;gap:9px;color:#fff;font-weight:800;font-size:17px;letter-spacing:-.3px;">
+        <svg width="28" height="28" viewBox="0 0 30 30" fill="none">
+          <circle cx="15" cy="15" r="14" fill="#0d1f13"/>
+          <circle cx="15" cy="15" r="10" fill="#3a7230" opacity=".6"/>
+          <path d="M11 9 L15 15 L11 21 H14 L18 15 L14 9 Z" fill="#fff"/>
+        </svg>
+        Krontiva
+      </a>
+      <p>We deliver integrated consulting and technology services that modernize financial infrastructure and unlock strategic growth across the continent.</p>
+      <div class="f-social">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+    <div class="f-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about/">About Us</a></li>
+        <li><a href="#">Meet The Team</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Solutions</h4>
+      <ul>
+        <li><a href="#">KronGage</a></li>
+        <li><a href="#">KronFlow</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="../faq/">FAQs</a></li>
+        <li><a href="../privacy-policy/">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bar">
+    <span>Krontiva Africa LTD &copy; 2023 &ndash; 2026</span>
+    <a href="../terms-of-service/">Terms of Service</a>
+  </div>
+</footer>
+
+</body>
+</html>

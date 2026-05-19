@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Krontiva Africa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:     #0d1f13;
+      --dark-mid: #193326;
+      --accent:   #3a7230;
+      --accent-lt:#6db84a;
+      --green-bg: #f2f8ef;
+      --text:     #111827;
+      --body:     #4b5563;
+      --muted:    #6b7280;
+      --border:   #e5e7eb;
+      --white:    #ffffff;
+      --grad:        linear-gradient(135deg, #2a5c1a 0%, #6ebb06 65%, #9ceb32 100%);
+      --grad-text:   linear-gradient(135deg, #6ebb06 0%, #9ceb32 100%);
+    }
+
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); }
+    a    { text-decoration: none; color: inherit; }
+
+    /* ─── NAV ─── */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 64px; height: 66px; background: var(--white);
+      border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 300;
+    }
+    .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; color: var(--dark); letter-spacing: -.3px; }
+    .logo svg { width: 30px; height: 30px; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 36px; list-style: none; font-size: 14px; font-weight: 500; }
+    .nav-links a { color: #374151; transition: color .2s; }
+    .nav-links a:hover { color: var(--dark); }
+    .btn-nav {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--grad); color: var(--white);
+      padding: 10px 22px; border-radius: 100px; font-size: 14px; font-weight: 600; transition: opacity .2s;
+    }
+    .btn-nav:hover { opacity: .88; }
+    .btn-nav svg { width: 13px; height: 13px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, #1a3d10 55%, #3a7a08 85%, #6ebb06 100%);
+      padding: 96px 64px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(156,235,50,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(156,235,50,.07) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 700px; }
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -.5px;
+      margin-bottom: 24px;
+    }
+    .hero p {
+      font-size: 15px;
+      color: rgba(255,255,255,.6);
+      line-height: 1.7;
+      max-width: 580px;
+    }
+
+    /* ─── POLICY BODY ─── */
+    .policy-body { padding: 64px 64px 80px; max-width: 900px; }
+
+    .policy-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .policy-item:first-child { border-top: 1px solid var(--border); }
+
+    .policy-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0;
+      cursor: pointer;
+      user-select: none;
+      gap: 24px;
+    }
+    .policy-q-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .policy-num {
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      min-width: 22px;
+      font-variant-numeric: tabular-nums;
+    }
+    .policy-q h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -.1px;
+    }
+    .policy-close {
+      width: 28px; height: 28px; flex-shrink: 0;
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      font-size: 15px;
+      transition: background .2s, border-color .2s, color .2s;
+    }
+    .policy-item.open .policy-close { background: var(--grad); border-color: transparent; color: var(--white); }
+
+    .policy-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+      padding: 0 0 0 42px;
+    }
+    .policy-item.open .policy-a { max-height: 800px; padding-bottom: 32px; }
+
+    .policy-a p {
+      font-size: 15px;
+      color: var(--body);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+    .policy-a p:last-child { margin-bottom: 0; }
+    .policy-a ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .policy-a ul li {
+      font-size: 15px;
+      color: var(--body);
+      line-height: 1.65;
+      padding-left: 20px;
+      position: relative;
+    }
+    .policy-a ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+    .policy-a strong { font-weight: 700; color: var(--text); }
+    .contact-block {
+      background: var(--green-bg);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-top: 8px;
+    }
+    .contact-block p { font-size: 14px; color: var(--body); margin-bottom: 4px; }
+    .contact-block p:last-child { margin-bottom: 0; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark); border-top: 1px solid rgba(255,255,255,.07);
+      padding: 64px 64px 0; color: rgba(255,255,255,.75);
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr; gap: 48px;
+      padding-bottom: 52px; border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .f-brand p { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,.5); margin: 16px 0 20px; max-width: 260px; }
+    .f-social { display: flex; gap: 20px; }
+    .f-social a { font-size: 13px; color: rgba(255,255,255,.5); transition: color .2s; }
+    .f-social a:hover { color: var(--white); }
+    .f-col h4 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 18px; }
+    .f-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .f-col ul a { font-size: 13px; color: rgba(255,255,255,.5); transition: color .2s; }
+    .f-col ul a:hover { color: var(--white); }
+    .footer-bar {
+      display: flex; justify-content: space-between; padding: 18px 0;
+      font-size: 12px; color: rgba(255,255,255,.35);
+    }
+    .footer-bar a { color: rgba(255,255,255,.35); transition: color .2s; }
+    .footer-bar a:hover { color: rgba(255,255,255,.7); }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="../" class="logo">
+    <svg viewBox="0 0 30 30" fill="none">
+      <circle cx="15" cy="15" r="14" fill="#0d1f13"/>
+      <circle cx="15" cy="15" r="10" fill="#3a7230" opacity=".55"/>
+      <path d="M11 9 L15 15 L11 21 H14 L18 15 L14 9 Z" fill="#fff"/>
+    </svg>
+    Krontiva
+  </a>
+  <ul class="nav-links">
+    <li><a href="../about/">Company</a></li>
+    <li><a href="../resources/">Resources</a></li>
+  </ul>
+  <a href="../contact/" class="btn-nav">
+    Get Started
+    <svg viewBox="0 0 13 13" fill="none"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>We care about your privacy.</h1>
+    <p>Effective Date: March 26, 2026. Krontiva Africa Limited is committed to the highest standards of data sovereignty and privacy.</p>
+  </div>
+</section>
+
+<!-- ═══ POLICY ACCORDION ═══ -->
+<div class="policy-body">
+
+  <div class="policy-item open">
+    <div class="policy-q" onclick="togglePolicy(this)">
+      <div class="policy-q-left">
+        <span class="policy-num">01.</span>
+        <h3>Introduction</h3>
+      </div>
+      <div class="policy-close">×</div>
+    </div>
+    <div class="policy-a">
+      <p>Krontiva Africa Limited ("Krontiva," "we," "us," or "our"), a premier business and technology consulting firm headquartered in Accra, Ghana, is committed to respecting and protecting your privacy. This policy outlines our protocols for the collection, orchestration, and protection of your personal identifiers in alignment with global best practices and the Data Protection Act of Ghana.</p>
+    </div>
+  </div>
+
+  <div class="policy-item">
+    <div class="policy-q" onclick="togglePolicy(this)">
+      <div class="policy-q-left">
+        <span class="policy-num">02.</span>
+        <h3>Data Acquisition</h3>
+      </div>
+      <div class="policy-close">+</div>
+    </div>
+    <div class="policy-a">
+      <p>We collect information necessary to deliver high-performance transformation services:</p>
+      <ul>
+        <li><strong>Identity &amp; Contact:</strong> Legal name, professional email, and phone details.</li>
+        <li><strong>Professional Context:</strong> Organisational affiliation and industry sector.</li>
+        <li><strong>Technical Telemetry:</strong> IP address, device specifications, and interaction metadata.</li>
+        <li><strong>Geolocation:</strong> Precise coordinates derived from device settings, processed only with explicit consent.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="policy-item">
+    <div class="policy-q" onclick="togglePolicy(this)">
+      <div class="policy-q-left">
+        <span class="policy-num">03.</span>
+        <h3>Strategic Use of Information</h3>
+      </div>
+      <div class="policy-close">+</div>
+    </div>
+    <div class="policy-a">
+      <p>Your data powers our core service delivery and innovation cycles:</p>
+      <p>We use your information for operational execution, product evolution (including <strong>KronFlow</strong> and <strong>KronGage</strong>), and security monitoring. With your consent, we may also provide personalised engagement through technical insights and promotional updates.</p>
+    </div>
+  </div>
+
+  <div class="policy-item">
+    <div class="policy-q" onclick="togglePolicy(this)">
+      <div class="policy-q-left">
+        <span class="policy-num">04.</span>
+        <h3>Controlled Disclosure</h3>
+      </div>
+      <div class="policy-close">+</div>
+    </div>
+    <div class="policy-a">
+      <p>Krontiva does not monetise your personal data. Disclosure is strictly limited to corporate affiliates, vetted third-party service providers, and statutory requirements mandated by the laws of the Republic of Ghana.</p>
+    </div>
+  </div>
+
+  <div class="policy-item">
+    <div class="policy-q" onclick="togglePolicy(this)">
+      <div class="policy-q-left">
+        <span class="policy-num">05.</span>
+        <h3>Security Architecture</h3>
+      </div>
+      <div class="policy-close">+</div>
+    </div>
+    <div class="policy-a">
+      <p>We employ an industry-leading security stack, including data encryption at rest and in transit, strict internal access controls, and a rapid breach notification protocol in accordance with applicable laws.</p>
+    </div>
+  </div>
+
+  <div class="policy-item">
+    <div class="policy-q" onclick="togglePolicy(this)">
+      <div class="policy-q-left">
+        <span class="policy-num">06.</span>
+        <h3>Your Individual Rights</h3>
+      </div>
+      <div class="policy-close">+</div>
+    </div>
+    <div class="policy-a">
+      <p>Under Ghanaian and regional privacy laws, you maintain the following rights:</p>
+      <ul>
+        <li><strong>Access &amp; Rectification:</strong> Request a transcript or mandate corrections to your data.</li>
+        <li><strong>Erasure:</strong> Request permanent deletion from our active systems.</li>
+        <li><strong>Portability:</strong> Request the secure transfer of your data to another provider.</li>
+        <li><strong>Objection:</strong> Object to specific processing or marketing activities.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="policy-item">
+    <div class="policy-q" onclick="togglePolicy(this)">
+      <div class="policy-q-left">
+        <span class="policy-num">07.</span>
+        <h3>Contact Our Data Office</h3>
+      </div>
+      <div class="policy-close">+</div>
+    </div>
+    <div class="policy-a">
+      <div class="contact-block">
+        <p><strong>Krontiva Africa Limited</strong></p>
+        <p>Accra, Ghana</p>
+        <p>Email: <a href="mailto:support@krontiva.africa" style="color:var(--accent);">support@krontiva.africa</a></p>
+        <p>Phone: +233 303 599 169</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-grid">
+    <div class="f-brand">
+      <a href="../" style="display:flex;align-items:center;gap:9px;color:#fff;font-weight:800;font-size:17px;letter-spacing:-.3px;">
+        <svg width="28" height="28" viewBox="0 0 30 30" fill="none">
+          <circle cx="15" cy="15" r="14" fill="#0d1f13"/>
+          <circle cx="15" cy="15" r="10" fill="#3a7230" opacity=".6"/>
+          <path d="M11 9 L15 15 L11 21 H14 L18 15 L14 9 Z" fill="#fff"/>
+        </svg>
+        Krontiva
+      </a>
+      <p>We deliver integrated consulting and technology services that modernize financial infrastructure and unlock strategic growth across the continent.</p>
+      <div class="f-social">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+    <div class="f-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about/">About Us</a></li>
+        <li><a href="#">Meet The Team</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Solutions</h4>
+      <ul>
+        <li><a href="#">KronGage</a></li>
+        <li><a href="#">KronFlow</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="../faq/">FAQs</a></li>
+        <li><a href="../privacy-policy/">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bar">
+    <span>Krontiva Africa LTD &copy; 2023 &ndash; 2026</span>
+    <a href="../terms-of-service/">Terms of Service</a>
+  </div>
+</footer>
+
+<script>
+  function togglePolicy(btn) {
+    const item = btn.parentElement;
+    const icon = btn.querySelector('.policy-close');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.policy-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.policy-close').textContent = '+';
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      icon.textContent = '×';
+    }
+  }
+</script>
+</body>
+</html>
