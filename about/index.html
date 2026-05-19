@@ -26,12 +26,29 @@
     body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); }
     a    { text-decoration: none; color: inherit; }
 
+    @keyframes gradFlow {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes blobDrift  { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(30px,-20px) scale(1.08)} 66%{transform:translate(-20px,15px) scale(.94)} }
+    @keyframes blobDrift2 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-25px,20px) scale(1.1)} 66%{transform:translate(15px,-15px) scale(.92)} }
+    @keyframes shimmerSlide { 0%{transform:translateX(-150%) skewX(-20deg)} 100%{transform:translateX(250%) skewX(-20deg)} }
+
     /* ─── NAV ─── */
     nav {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 64px; height: 66px; background: var(--white);
-      border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 300;
+      padding: 0 28px; height: 62px;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.55);
+      box-shadow: 0 4px 32px rgba(0,0,0,.09);
+      border-radius: 100px;
+      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 48px); max-width: 1200px;
+      z-index: 300; transition: background .3s, box-shadow .3s;
     }
+    nav.scrolled { background: rgba(255,255,255,.97); box-shadow: 0 6px 40px rgba(0,0,0,.13); }
     .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; color: var(--dark); letter-spacing: -.3px; }
     .logo svg { width: 30px; height: 30px; flex-shrink: 0; }
     .nav-links { display: flex; gap: 36px; list-style: none; font-size: 14px; font-weight: 500; }
@@ -48,7 +65,7 @@
     /* ─── HERO ─── */
     .hero {
       background: var(--white);
-      padding: 100px 64px 80px;
+      padding: 150px 64px 80px;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -88,7 +105,10 @@
 
     /* ─── DARK SECTION ─── */
     .dark-section {
-      background: linear-gradient(135deg, var(--dark) 0%, #1a3d10 55%, #2e6010 100%);
+      background: linear-gradient(120deg, var(--dark) 0%, #1a3d10 25%, #3d7a08 60%, #6ebb06 80%, #1a3d10 100%);
+      background-size: 300% 300%;
+      animation: gradFlow 16s ease infinite;
+      position: relative; overflow: hidden;
       color: var(--white);
       padding: 80px 64px;
     }
@@ -114,7 +134,10 @@
 
     /* ─── VISION & MISSION ─── */
     .vm-section {
-      background: linear-gradient(160deg, #0d1f13 0%, #152d18 40%, #1e4a10 80%, #2d6a0e 100%);
+      background: linear-gradient(160deg, #0d1f13 0%, #1e4a10 30%, #3d7a08 60%, #6ebb06 85%, #1e4a10 100%);
+      background-size: 300% 300%;
+      animation: gradFlow 18s ease infinite;
+      position: relative; overflow: hidden;
       padding: 80px 64px;
       color: var(--white);
     }
@@ -187,7 +210,10 @@
 
     /* ─── MEET THE TEAM CTA ─── */
     .team-cta {
-      background: linear-gradient(135deg, var(--dark) 0%, #1a3d0e 40%, #3d7a08 75%, #6ebb06 100%);
+      background: linear-gradient(135deg, var(--dark) 0%, #1a3d0e 20%, #3d7a08 50%, #6ebb06 75%, #9ceb32 90%, #3d7a08 100%);
+      background-size: 300% 300%;
+      animation: gradFlow 10s ease infinite;
+      position: relative; overflow: hidden;
       padding: 80px 64px;
       text-align: center;
     }
@@ -262,6 +288,8 @@
 
 <!-- ═══ DARK INTRO SECTION ═══ -->
 <section class="dark-section" id="story">
+  <div class="blob" style="width:420px;height:420px;top:10%;left:-100px;background:radial-gradient(circle,rgba(110,187,6,.18) 0%,transparent 70%);position:absolute;border-radius:50%;animation:blobDrift 18s ease-in-out infinite;pointer-events:none;"></div>
+  <div class="blob" style="width:320px;height:320px;bottom:5%;right:-60px;background:radial-gradient(circle,rgba(156,235,50,.13) 0%,transparent 70%);position:absolute;border-radius:50%;animation:blobDrift2 22s ease-in-out infinite;pointer-events:none;"></div>
   <div class="dark-inner">
     <div>
       <h2>Driving Sustainable Business Transformation for Africa</h2>
@@ -280,6 +308,8 @@
 
 <!-- ═══ VISION & MISSION FULL ═══ -->
 <section class="vm-section">
+  <div class="blob" style="width:500px;height:500px;top:-80px;right:-120px;background:radial-gradient(circle,rgba(110,187,6,.15) 0%,transparent 70%);position:absolute;border-radius:50%;animation:blobDrift2 20s ease-in-out infinite;pointer-events:none;"></div>
+  <div class="blob" style="width:280px;height:280px;bottom:0;left:5%;background:radial-gradient(circle,rgba(156,235,50,.11) 0%,transparent 70%);position:absolute;border-radius:50%;animation:blobDrift 25s ease-in-out infinite;pointer-events:none;"></div>
   <div class="vm-inner">
     <h2>Our Vision &amp; Mission</h2>
     <div class="vm-cols">
@@ -331,6 +361,8 @@
 
 <!-- ═══ MEET THE TEAM CTA ═══ -->
 <section class="team-cta">
+  <div class="blob" style="width:460px;height:460px;top:-60px;left:-80px;background:radial-gradient(circle,rgba(110,187,6,.2) 0%,transparent 70%);position:absolute;border-radius:50%;animation:blobDrift 16s ease-in-out infinite;pointer-events:none;"></div>
+  <div class="blob" style="width:340px;height:340px;bottom:-40px;right:5%;background:radial-gradient(circle,rgba(156,235,50,.14) 0%,transparent 70%);position:absolute;border-radius:50%;animation:blobDrift2 19s ease-in-out infinite;pointer-events:none;"></div>
   <p>Meet our team</p>
   <h2>Integrity you can trust, proficiency you can depend on.</h2>
   <a href="#" class="btn-green">
@@ -387,5 +419,11 @@
   </div>
 </footer>
 
+<script>
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+</script>
 </body>
 </html>

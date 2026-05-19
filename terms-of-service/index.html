@@ -26,12 +26,28 @@
     body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); }
     a    { text-decoration: none; color: inherit; }
 
+    @keyframes gradFlow {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes blobDrift  { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(30px,-20px) scale(1.08)} 66%{transform:translate(-20px,15px) scale(.94)} }
+    @keyframes blobDrift2 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-25px,20px) scale(1.1)} 66%{transform:translate(15px,-15px) scale(.92)} }
+
     /* ─── NAV ─── */
     nav {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 64px; height: 66px; background: var(--white);
-      border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 300;
+      padding: 0 28px; height: 62px;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.55);
+      box-shadow: 0 4px 32px rgba(0,0,0,.09);
+      border-radius: 100px;
+      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 48px); max-width: 1200px;
+      z-index: 300; transition: background .3s, box-shadow .3s;
     }
+    nav.scrolled { background: rgba(255,255,255,.97); box-shadow: 0 6px 40px rgba(0,0,0,.13); }
     .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; color: var(--dark); letter-spacing: -.3px; }
     .logo svg { width: 30px; height: 30px; flex-shrink: 0; }
     .nav-links { display: flex; gap: 36px; list-style: none; font-size: 14px; font-weight: 500; }
@@ -47,8 +63,10 @@
 
     /* ─── HERO ─── */
     .hero {
-      background: linear-gradient(135deg, var(--dark) 0%, #1a3d10 55%, #3a7a08 85%, #6ebb06 100%);
-      padding: 96px 64px 80px;
+      background: linear-gradient(120deg, var(--dark) 0%, #1a3d10 25%, #3d7a08 55%, #6ebb06 78%, #9ceb32 90%, #3d7a08 100%);
+      background-size: 300% 300%;
+      animation: gradFlow 12s ease infinite;
+      padding: 140px 64px 80px;
       position: relative;
       overflow: hidden;
     }
@@ -183,6 +201,8 @@
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
+  <div class="blob" style="width:500px;height:500px;top:-80px;right:-120px;background:radial-gradient(circle,rgba(110,187,6,.17) 0%,transparent 70%);position:absolute;border-radius:50%;animation:blobDrift2 19s ease-in-out infinite;pointer-events:none;"></div>
+  <div class="blob" style="width:280px;height:280px;bottom:5%;left:8%;background:radial-gradient(circle,rgba(156,235,50,.11) 0%,transparent 70%);position:absolute;border-radius:50%;animation:blobDrift 26s ease-in-out infinite;pointer-events:none;"></div>
   <div class="hero-inner">
     <span class="page-tag">Legal</span>
     <h1>Terms of Service</h1>
@@ -379,6 +399,10 @@
     });
   }, { rootMargin: '-20% 0px -70% 0px' });
   sections.forEach(s => obs.observe(s));
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
 </script>
 </body>
 </html>

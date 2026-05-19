@@ -26,12 +26,29 @@
     body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); }
     a    { text-decoration: none; color: inherit; }
 
+    @keyframes gradFlow {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes blobDrift  { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(30px,-20px) scale(1.08)} 66%{transform:translate(-20px,15px) scale(.94)} }
+    @keyframes blobDrift2 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-25px,20px) scale(1.1)} 66%{transform:translate(15px,-15px) scale(.92)} }
+    @keyframes shimmerSlide { 0%{transform:translateX(-150%) skewX(-20deg)} 100%{transform:translateX(250%) skewX(-20deg)} }
+
     /* ─── NAV ─── */
     nav {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 64px; height: 66px; background: var(--white);
-      border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 300;
+      padding: 0 28px; height: 62px;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.55);
+      box-shadow: 0 4px 32px rgba(0,0,0,.09);
+      border-radius: 100px;
+      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 48px); max-width: 1200px;
+      z-index: 300; transition: background .3s, box-shadow .3s;
     }
+    nav.scrolled { background: rgba(255,255,255,.97); box-shadow: 0 6px 40px rgba(0,0,0,.13); }
     .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; color: var(--dark); letter-spacing: -.3px; }
     .logo svg { width: 30px; height: 30px; flex-shrink: 0; }
     .nav-links { display: flex; gap: 36px; list-style: none; font-size: 14px; font-weight: 500; }
@@ -47,8 +64,10 @@
 
     /* ─── HERO ─── */
     .hero {
-      background: linear-gradient(135deg, var(--dark) 0%, #1a3d10 55%, #3a7a08 85%, #6ebb06 100%);
-      padding: 80px 64px 72px;
+      background: linear-gradient(120deg, var(--dark) 0%, #1a3d10 25%, #3d7a08 55%, #6ebb06 78%, #9ceb32 90%, #3d7a08 100%);
+      background-size: 300% 300%;
+      animation: gradFlow 12s ease infinite;
+      padding: 140px 64px 72px;
       position: relative; overflow: hidden;
     }
     .hero::before {
@@ -205,7 +224,9 @@
 
     /* ─── NEWSLETTER ─── */
     .newsletter {
-      background: linear-gradient(135deg, var(--dark) 0%, #1a3d0e 40%, #3d7a08 75%, #6ebb06 100%);
+      background: linear-gradient(135deg, var(--dark) 0%, #1a3d0e 20%, #3d7a08 50%, #6ebb06 75%, #9ceb32 90%, #3d7a08 100%);
+      background-size: 300% 300%;
+      animation: gradFlow 10s ease infinite;
       margin: 0 64px 64px;
       border-radius: 16px;
       padding: 56px 64px;
@@ -283,6 +304,8 @@
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
+  <div class="blob" style="width:500px;height:500px;top:-60px;right:-110px;background:radial-gradient(circle,rgba(110,187,6,.18) 0%,transparent 70%);position:absolute;border-radius:50%;animation:blobDrift2 20s ease-in-out infinite;pointer-events:none;"></div>
+  <div class="blob" style="width:320px;height:320px;bottom:5%;left:3%;background:radial-gradient(circle,rgba(156,235,50,.12) 0%,transparent 70%);position:absolute;border-radius:50%;animation:blobDrift 23s ease-in-out infinite;pointer-events:none;"></div>
   <div class="hero-inner">
     <div class="hero-left">
       <span class="page-tag">Resources</span>
@@ -451,6 +474,7 @@
 
 <!-- ═══ NEWSLETTER ═══ -->
 <div class="newsletter">
+  <div class="blob" style="width:400px;height:400px;top:-60px;right:-80px;background:radial-gradient(circle,rgba(110,187,6,.2) 0%,transparent 70%);position:absolute;border-radius:50%;animation:blobDrift2 17s ease-in-out infinite;pointer-events:none;"></div>
   <div class="newsletter-text">
     <h2>Stay ahead of the curve.</h2>
     <p>Get our latest insights and research delivered to your inbox, monthly.</p>
@@ -517,6 +541,10 @@
       card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
     });
   }
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
 </script>
 </body>
 </html>

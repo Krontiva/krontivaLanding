@@ -29,18 +29,56 @@
     a    { text-decoration: none; color: inherit; }
     img  { display: block; max-width: 100%; }
 
+    /* ─── KEYFRAMES ─── */
+    @keyframes gradFlow {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes orbFloat {
+      0%, 100% { transform: translateY(-50%) scale(1);   opacity: .22; }
+      50%       { transform: translateY(calc(-50% - 24px)) scale(1.12); opacity: .32; }
+    }
+    @keyframes blobDrift {
+      0%, 100% { transform: translate(0,   0)   scale(1); }
+      33%       { transform: translate(30px,-20px) scale(1.08); }
+      66%       { transform: translate(-20px, 15px) scale(.94); }
+    }
+    @keyframes blobDrift2 {
+      0%, 100% { transform: translate(0, 0)     scale(1); }
+      33%       { transform: translate(-25px, 20px) scale(1.1); }
+      66%       { transform: translate(15px,-15px)  scale(.92); }
+    }
+    @keyframes shimmerSlide {
+      0%   { transform: translateX(-150%) skewX(-20deg); }
+      100% { transform: translateX(250%)  skewX(-20deg); }
+    }
+
     /* ─── NAV ─── */
     nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 64px;
-      height: 66px;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
+      padding: 0 28px;
+      height: 62px;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.55);
+      box-shadow: 0 4px 32px rgba(0,0,0,.09);
+      border-radius: 100px;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 48px);
+      max-width: 1200px;
       z-index: 300;
+      transition: background .3s, box-shadow .3s;
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,.97);
+      box-shadow: 0 6px 40px rgba(0,0,0,.13);
     }
     .logo {
       display: flex;
@@ -80,51 +118,63 @@
     .hero {
       position: relative;
       background: var(--dark);
-      min-height: 580px;
+      min-height: 100svh;
       display: flex;
       align-items: center;
-      padding: 96px 64px;
+      padding: 152px 64px 96px;
       overflow: hidden;
+    }
+    /* video background */
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: .45;
+    }
+    /* dark + gradient overlay on top of video */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(to right, rgba(13,31,19,.92) 40%, rgba(13,31,19,.45) 100%),
+        linear-gradient(to top,   rgba(13,31,19,.7)  0%,  transparent 60%);
     }
     .hero-bg {
       position: absolute;
       inset: 0;
       overflow: hidden;
       pointer-events: none;
+      z-index: 2;
     }
-    .hero-bg::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 80% at 75% 50%, rgba(110,187,6,.28) 0%, rgba(58,114,48,.15) 40%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(13,45,25,.6) 0%, transparent 60%);
-    }
-    /* circuit grid overlay */
+    /* subtle grid */
     .hero-bg::after {
       content: '';
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(109,184,74,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(109,184,74,.06) 1px, transparent 1px);
-      background-size: 48px 48px;
+        linear-gradient(rgba(109,184,74,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(109,184,74,.05) 1px, transparent 1px);
+      background-size: 52px 52px;
     }
-    /* glowing orb */
+    /* glowing orb — animated */
     .hero-orb {
       position: absolute;
-      right: 8%;
+      right: 10%;
       top: 50%;
       transform: translateY(-50%);
-      width: 380px;
-      height: 380px;
+      width: 420px;
+      height: 420px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(156,235,50,.22) 0%, rgba(110,187,6,.15) 35%, rgba(58,114,48,.08) 60%, transparent 75%);
-      box-shadow: 0 0 140px 60px rgba(110,187,6,.18);
+      background: radial-gradient(circle, rgba(156,235,50,.18) 0%, rgba(110,187,6,.1) 40%, transparent 70%);
+      box-shadow: 0 0 160px 80px rgba(110,187,6,.14);
+      animation: orbFloat 9s ease-in-out infinite;
     }
     .hero-content {
       position: relative;
-      z-index: 1;
+      z-index: 3;
       max-width: 620px;
     }
     .hero-tag {
@@ -186,8 +236,12 @@
 
     /* ─── WHO WE ARE STRIP ─── */
     .who-strip {
-      background: linear-gradient(120deg, var(--dark) 0%, #1e4a10 55%, #4a8f05 100%);
+      background: linear-gradient(120deg, var(--dark) 0%, #1a3d10 25%, #4a8f05 60%, #6ebb06 80%, #1a3d10 100%);
+      background-size: 300% 300%;
+      animation: gradFlow 14s ease infinite;
       color: var(--white);
+      position: relative;
+      overflow: hidden;
       padding: 52px 64px;
       display: flex;
       align-items: center;
@@ -450,7 +504,11 @@
 
     /* ─── CTA STRIP ─── */
     .cta-strip {
-      background: linear-gradient(135deg, var(--dark) 0%, #1a3d0e 40%, #3d7a08 75%, #6ebb06 100%);
+      background: linear-gradient(135deg, var(--dark) 0%, #1a3d0e 20%, #3d7a08 50%, #6ebb06 75%, #9ceb32 90%, #3d7a08 100%);
+      background-size: 300% 300%;
+      animation: gradFlow 10s ease infinite;
+      position: relative;
+      overflow: hidden;
       padding: 88px 64px;
       display: flex;
       align-items: center;
@@ -542,6 +600,10 @@
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
+  <video class="hero-video" autoplay loop muted playsinline>
+    <source src="media/krontivaWeb-stock.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-overlay"></div>
   <div class="hero-bg"><div class="hero-orb"></div></div>
   <div class="hero-content">
     <span class="hero-tag">Krontiva Africa</span>
@@ -556,6 +618,10 @@
 
 <!-- ═══ WHO WE ARE STRIP ═══ -->
 <div class="who-strip">
+  <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
+    <div style="position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(156,235,50,.18),transparent 70%);top:-80px;right:15%;animation:blobDrift 12s ease-in-out infinite;"></div>
+    <div style="position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(110,187,6,.14),transparent 70%);bottom:-60px;left:25%;animation:blobDrift2 15s ease-in-out infinite;"></div>
+  </div>
   <h2>Driving Sustainable Business Transformation for Africa</h2>
   <a href="about/" class="btn-ghost-white">
     Learn More
@@ -720,6 +786,11 @@
 
 <!-- ═══ CTA STRIP ═══ -->
 <section class="cta-strip">
+  <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
+    <div style="position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(156,235,50,.15),transparent 65%);top:-150px;left:-100px;animation:blobDrift 14s ease-in-out infinite;"></div>
+    <div style="position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(110,187,6,.12),transparent 65%);bottom:-120px;right:-80px;animation:blobDrift2 11s ease-in-out infinite;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent 30%,rgba(255,255,255,.03) 50%,transparent 70%);animation:shimmerSlide 6s ease-in-out infinite;"></div>
+  </div>
   <h2>Ready for <em>transformation</em> <span class="cta-dot"></span></h2>
 </section>
 
@@ -772,6 +843,12 @@
 </footer>
 
 <script>
+  /* Nav scroll behaviour */
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
   function toggleFaq(btn) {
     const item = btn.parentElement;
     const icon = btn.querySelector('.faq-icon');
