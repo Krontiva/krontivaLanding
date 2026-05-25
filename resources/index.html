@@ -1,16 +1,19 @@
-<!DOCTYPE html>
+P<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resources &amp; Insights — Krontiva Africa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --dark:      #0d1f13;
-      --dark-mid:  #193326;
+      --dark:      #1b5e37;
+      --dark-mid:  #267a4a;
       --accent:    #3a7230;
       --accent-lt: #6db84a;
       --green-bg:  #f2f8ef;
@@ -21,9 +24,11 @@
       --white:     #ffffff;
       --grad:      linear-gradient(135deg, #2a5c1a 0%, #6ebb06 65%, #9ceb32 100%);
       --grad-text: linear-gradient(135deg, #6ebb06 0%, #9ceb32 100%);
+      --h-ff: 'DM Serif Text', serif;
     }
 
     body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--h-ff); }
     a    { text-decoration: none; color: inherit; }
 
     /* ─── NAV ─── */
@@ -47,7 +52,7 @@
 
     /* ─── HERO ─── */
     .hero {
-      background: linear-gradient(135deg, var(--dark) 0%, #1a3d10 55%, #3a7a08 85%, #6ebb06 100%);
+      background: linear-gradient(135deg, var(--dark) 0%, #267a49 55%, #3a7a08 85%, #6ebb06 100%);
       padding: 80px 64px 72px;
       position: relative; overflow: hidden;
     }
@@ -116,7 +121,7 @@
     }
     .featured-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.08); }
     .featured-img {
-      background: linear-gradient(135deg, var(--dark) 0%, #1a3d10 55%, #3a7a08 85%, #6ebb06 100%);
+      background: linear-gradient(135deg, var(--dark) 0%, #267a49 55%, #3a7a08 85%, #6ebb06 100%);
       min-height: 320px;
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
@@ -165,7 +170,7 @@
 
     .article-thumb {
       height: 160px;
-      background: linear-gradient(135deg, var(--dark) 0%, #1e4a10 60%, #3a7a08 100%);
+      background: linear-gradient(135deg, var(--dark) 0%, #2d7a52 60%, #3a7a08 100%);
       position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: center;
     }
@@ -176,11 +181,11 @@
         linear-gradient(90deg, rgba(156,235,50,.07) 1px, transparent 1px);
       background-size: 32px 32px;
     }
-    .article-thumb.alt1 { background: linear-gradient(135deg, #0d1f13, #2a5c1a 70%, #6ebb06); }
-    .article-thumb.alt2 { background: linear-gradient(135deg, #0a1a10, #1a3d10 60%, #4a8f05); }
-    .article-thumb.alt3 { background: linear-gradient(160deg, #0d2018, #193326 50%, #3a7230 90%); }
-    .article-thumb.alt4 { background: linear-gradient(135deg, #0d1f13, #3a7a08 65%, #9ceb32); }
-    .article-thumb.alt5 { background: linear-gradient(135deg, #0d1f13, #1e4a10 55%, #6ebb06 100%); }
+    .article-thumb.alt1 { background: linear-gradient(135deg, #1b5e37, #2a5c1a 70%, #6ebb06); }
+    .article-thumb.alt2 { background: linear-gradient(135deg, #0a1a10, #267a49 60%, #4a8f05); }
+    .article-thumb.alt3 { background: linear-gradient(160deg, #0d2018, #267a4a 50%, #3a7230 90%); }
+    .article-thumb.alt4 { background: linear-gradient(135deg, #1b5e37, #3a7a08 65%, #9ceb32); }
+    .article-thumb.alt5 { background: linear-gradient(135deg, #1b5e37, #2d7a52 55%, #6ebb06 100%); }
     .thumb-icon { position: relative; z-index: 1; }
     .thumb-icon svg { width: 36px; height: 36px; stroke: rgba(255,255,255,.25); fill: none; }
 
@@ -200,12 +205,12 @@
       display: flex; align-items: center; justify-content: center;
       color: var(--muted); transition: background .2s, border-color .2s, color .2s;
     }
-    .arrow-btn:hover { background: var(--grad); border-color: transparent; color: var(--white); }
+    .arrow-btn:hover { background: var(--grad); border-color: transparent; color: var(--white); opacity: 0.88; }
     .arrow-btn svg { width: 11px; height: 11px; }
 
     /* ─── NEWSLETTER ─── */
     .newsletter {
-      background: linear-gradient(135deg, var(--dark) 0%, #1a3d0e 40%, #3d7a08 75%, #6ebb06 100%);
+      background: linear-gradient(135deg, var(--dark) 0%, #267a49 40%, #3d7a08 75%, #6ebb06 100%);
       margin: 0 64px 64px;
       border-radius: 16px;
       padding: 56px 64px;
@@ -230,12 +235,12 @@
       background: rgba(255,255,255,.95);
     }
     .newsletter-form button {
-      background: var(--dark); color: var(--white); border: none;
+      background: var(--grad); color: var(--white); border: none;
       padding: 12px 24px; border-radius: 100px; font-size: 14px; font-weight: 700;
       cursor: pointer; font-family: 'Inter', sans-serif;
       transition: opacity .2s;
     }
-    .newsletter-form button:hover { opacity: .85; }
+    .newsletter-form button:hover { opacity: .88; }
 
     /* ─── FOOTER ─── */
     footer {
@@ -264,12 +269,7 @@
 <!-- ═══ NAV ═══ -->
 <nav>
   <a href="../" class="logo">
-    <svg viewBox="0 0 30 30" fill="none">
-      <circle cx="15" cy="15" r="14" fill="#0d1f13"/>
-      <circle cx="15" cy="15" r="10" fill="#3a7230" opacity=".55"/>
-      <path d="M11 9 L15 15 L11 21 H14 L18 15 L14 9 Z" fill="#fff"/>
-    </svg>
-    Krontiva
+    <img src="../Krontiva-Black.png" alt="Krontiva Logo" style="width: 150px; height: auto;">
   </a>
   <ul class="nav-links">
     <li><a href="../about/">Company</a></li>
@@ -467,7 +467,7 @@
     <div class="f-brand">
       <a href="../" style="display:flex;align-items:center;gap:9px;color:#fff;font-weight:800;font-size:17px;letter-spacing:-.3px;">
         <svg width="28" height="28" viewBox="0 0 30 30" fill="none">
-          <circle cx="15" cy="15" r="14" fill="#0d1f13"/>
+          <circle cx="15" cy="15" r="14" fill="#1b5e37"/>
           <circle cx="15" cy="15" r="10" fill="#3a7230" opacity=".6"/>
           <path d="M11 9 L15 15 L11 21 H14 L18 15 L14 9 Z" fill="#fff"/>
         </svg>

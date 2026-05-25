@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Krontiva Africa — Business & Technology Transformation</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --dark:        #0d1f13;
-      --dark-mid:    #193326;
+      --dark: #0d1f13;
+    --dark-mid: #193326;
       --accent:      #3a7230;
       --accent-lt:   #6db84a;
       --green-bg:    #f2f8ef;
@@ -21,11 +23,13 @@
       --white:       #ffffff;
       --radius:      10px;
       --grad:        linear-gradient(135deg, #2a5c1a 0%, #6ebb06 65%, #9ceb32 100%);
-      --grad-subtle: linear-gradient(135deg, #0d1f13 0%, #1e4a10 50%, #6ebb06 100%);
+      --grad-subtle: linear-gradient(135deg, #1b5e37 0%, #2d7a52 50%, #6ebb06 100%);
       --grad-text:   linear-gradient(135deg, #6ebb06 0%, #9ceb32 100%);
+      --h-ff: 'DM Serif Text', serif;
     }
 
     body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--h-ff); }
     a    { text-decoration: none; color: inherit; }
     img  { display: block; max-width: 100%; }
 
@@ -79,90 +83,71 @@
     /* ─── HERO ─── */
     .hero {
       position: relative;
-      background: var(--dark);
-      min-height: 580px;
+      height: 640px;
       display: flex;
       align-items: center;
-      padding: 96px 64px;
+      justify-content: center;
+      text-align: center;
       overflow: hidden;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.92);
+      border-radius: 16px;
+      padding: 48px 40px;
+      position: absolute;
+      bottom: 80px;
+      left: 40px;
+      max-width: 680px;
+      text-align: left;
+    }
+    .hero-card h1 {
+      font-family: 'Playfair Display', serif;
+      color: #0F2A1D;
+      font-size: clamp(36px, 5vw, 52px);
+      line-height: 1.05;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .hero-card h1 .highlight {
+      background: linear-gradient(90deg, #A6D96A 0%, #D4EEA5 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-btns {
+      position: absolute;
+      bottom: 24px;
+      left: 40px;
+      display: flex;
+      gap: 12px;
+    }
+    .hero-tag {
+      font-size: 11px;
+      font-weight: 500;
+      color: #0F2A1D;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      display: block;
     }
     .hero-bg {
       position: absolute;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--dark);
+      z-index: -1;
     }
-    .hero-bg::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 80% at 75% 50%, rgba(110,187,6,.28) 0%, rgba(58,114,48,.15) 40%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(13,45,25,.6) 0%, transparent 60%);
-    }
-    /* circuit grid overlay */
-    .hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(109,184,74,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(109,184,74,.06) 1px, transparent 1px);
-      background-size: 48px 48px;
-    }
-    /* glowing orb */
     .hero-orb {
       position: absolute;
-      right: 8%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 380px;
-      height: 380px;
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(circle, var(--dark-mid) 0%, var(--dark) 60%);
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(156,235,50,.22) 0%, rgba(110,187,6,.15) 35%, rgba(58,114,48,.08) 60%, transparent 75%);
-      box-shadow: 0 0 140px 60px rgba(110,187,6,.18);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      filter: blur(40px);
+      opacity: .7;
     }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 620px;
-    }
-    .hero-tag {
-      display: inline-block;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.15);
-      color: rgba(255,255,255,.85);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 100px;
-      margin-bottom: 28px;
-    }
-    .hero-content h1 {
-      font-size: clamp(38px, 5vw, 60px);
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1.1;
-      letter-spacing: -.5px;
-      margin-bottom: 24px;
-    }
-    .hero-content h1 em {
-      font-style: normal;
-      background: var(--grad-text);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero-content p {
-      font-size: 16px;
-      color: rgba(255,255,255,.65);
-      line-height: 1.7;
-      margin-bottom: 40px;
-      max-width: 480px;
-    }
-    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
     .btn-solid {
       background: var(--grad);
       color: var(--white);
@@ -186,35 +171,46 @@
 
     /* ─── WHO WE ARE STRIP ─── */
     .who-strip {
-      background: linear-gradient(120deg, var(--dark) 0%, #1e4a10 55%, #4a8f05 100%);
-      color: var(--white);
-      padding: 52px 64px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      gap: 40px;
+      justify-content: center;
+      text-align: center;
+      padding: 64px 24px;
+    }
+    .strip-label {
+      border: 1.5px solid white;
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 13px;
+      color: white;
+      margin-bottom: 16px;
     }
     .who-strip h2 {
-      font-size: clamp(20px, 2.5vw, 30px);
-      font-weight: 700;
-      max-width: 560px;
-      line-height: 1.35;
-    }
-    .btn-ghost-white {
-      flex-shrink: 0;
-      border: 1.5px solid rgba(255,255,255,.4);
       color: var(--white);
-      padding: 11px 24px;
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 600;
-      display: flex;
+      font-size: clamp(24px, 3.5vw, 32px);
+      font-weight: 700;
+      letter-spacing: -.5px;
+      max-width: 500px;
+      margin: 0 auto 24px;
+    }
+    .btn-filled-green {
+      background: var(--grad);
+      color: var(--white);
+      border: none;
+      border-radius: 999px;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: border-color .2s;
-      white-space: nowrap;
+      transition: all .2s;
     }
-    .btn-ghost-white:hover { border-color: var(--white); }
+    .btn-filled-green:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+    }
 
     /* ─── SECTIONS ─── */
     .section { padding: 80px 64px; }
@@ -252,6 +248,36 @@
       grid-template-columns: 1fr 1fr;
       gap: 24px;
     }
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      .cards-3 { grid-template-columns: 1fr; }
+    }
+    .value-card {
+      text-align: center;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: all .2s ease-in-out;
+    }
+    .value-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.08);
+    }
+    .value-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+    .value-card p {
+      color: var(--body);
+      font-size: 15px;
+      line-height: 1.6;
+    }
     @media (max-width: 720px) { .cards-2 { grid-template-columns: 1fr; } }
     .product-card {
       border: 1px solid var(--border);
@@ -276,15 +302,15 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      border: 1.5px solid var(--accent);
-      color: var(--accent);
+      background: var(--grad);
+      color: var(--white);
       padding: 8px 18px;
       border-radius: 100px;
       font-size: 13px;
       font-weight: 600;
-      transition: background .2s, color .2s;
+      transition: opacity .2s;
     }
-    .btn-pill:hover { background: var(--accent); color: var(--white); }
+    .btn-pill:hover { opacity: .88; }
 
     /* ─── STATS ─── */
     .stats-wrap {
@@ -320,31 +346,84 @@
       font-weight: 700;
       transition: background .25s, color .25s, border-color .25s;
     }
-    .btn-circle:hover { background: var(--grad); color: var(--white); border-color: transparent; }
+    .btn-circle:hover { background: var(--grad); color: var(--white); border-color: transparent; opacity: 0.88; }
 
     /* ─── USE CASES ─── */
-    .use-cases { text-align: center; }
-    .hex-row {
-      display: flex;
-      justify-content: center;
-      gap: 28px;
-      flex-wrap: wrap;
-      margin-top: 8px;
+    #use-cases {
+      background-color: #eef2ee;
+      padding: 64px 24px;
+      text-align: center;
     }
-    .hex-item { display: flex; flex-direction: column; align-items: center; gap: 14px; }
-    .hex {
-      width: 92px;
-      height: 92px;
-      background: var(--grad);
-      clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+    .explore-pill {
+      border: 1.5px solid #333;
+      border-radius: 999px;
+      padding: 6px 18px;
+      font-size: 13px;
+      color: #333;
+      background: transparent;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    #use-cases h2 {
+      font-size: clamp(26px, 3.2vw, 38px);
+      font-weight: 700;
+      letter-spacing: -.5px;
+      margin-bottom: 48px;
+    }
+    .use-case-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: visible; /* Allow labels to be visible */
+    }
+    .use-case-item {
+      position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: opacity .2s;
+      gap: 8px;
+      transition: transform .2s;
+      aspect-ratio: 1 / 1.1547;
     }
-    .hex:hover { opacity: .82; }
-    .hex svg { width: 34px; height: 34px; fill: var(--white); }
-    .hex-item span { font-size: 13px; font-weight: 600; color: var(--text); }
+    .use-case-item:hover {
+      transform: translateY(-8px);
+    }
+    .uc-hex {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .uc-hex-bg {
+      fill: #a8c96a;
+      transition: fill .2s;
+    }
+    .use-case-item:hover .uc-hex-bg {
+      fill: var(--grad);
+    }
+    .uc-icon {
+      width: 32px;
+      height: 32px;
+      color: white;
+      stroke: white;
+      position: relative;
+      z-index: 1;
+    }
+    .uc-label {
+      color: white;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
 
     /* ─── NEWS ─── */
     .news-head {
@@ -402,55 +481,67 @@
     }
     .news-arrow:hover { background: var(--dark); border-color: var(--dark); color: var(--white); }
 
-    /* ─── FAQ ─── */
-    .faq-wrap { background: #f9fafb; }
-    .faq-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    @media (max-width: 780px) { .faq-cols { grid-template-columns: 1fr; } }
-    .faq-item {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-    }
-    .faq-q {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 24px;
-      cursor: pointer;
-      user-select: none;
-      gap: 12px;
-    }
-    .faq-q-text { display: flex; align-items: center; gap: 10px; }
-    .faq-num { font-size: 12px; font-weight: 600; color: var(--muted); min-width: 24px; }
-    .faq-q-text span:last-child { font-size: 15px; font-weight: 600; line-height: 1.4; }
-    .faq-icon {
-      width: 26px; height: 26px; flex-shrink: 0;
-      border: 1.5px solid var(--border);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 17px;
-      color: var(--body);
-      transition: background .2s, border-color .2s, color .2s;
-    }
-    .faq-item.open .faq-icon { background: var(--dark); border-color: var(--dark); color: var(--white); }
-    .faq-a {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height .32s ease, padding .32s ease;
-      font-size: 14px;
-      color: var(--body);
-      line-height: 1.7;
-      padding: 0 24px;
-    }
-    .faq-item.open .faq-a { max-height: 240px; padding-bottom: 20px; }
+    .faq {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background: #ffffff;
+  padding: 60px 80px;
+  gap: 100px;
+}
+.faq__heading {
+  width: 260px;
+  flex-shrink: 0;
+}
+.faq__heading h2 {
+  font-family: 'Georgia', 'Times New Roman', serif !important;
+  font-size: 42px;
+  font-weight: 700;
+  color: #0d1b2a;
+  line-height: 1.2;
+  margin: 0;
+}
+.faq__list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.faq__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+  border-top: 1px solid #eaecef;
+}
+.faq__item:first-child {
+  border-top: none;
+}
+.faq__item:last-child {
+  border-bottom: 1px solid #eaecef;
+}
+.faq__number {
+  font-size: 13px;
+  color: #9ba8b5;
+  font-weight: 400;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+.faq__question {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a2332;
+  flex: 1;
+}
+.faq__dot {
+  font-size: 10px;
+  color: #b0bac4 !important;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
 
     /* ─── CTA STRIP ─── */
     .cta-strip {
-      background: linear-gradient(135deg, var(--dark) 0%, #1a3d0e 40%, #3d7a08 75%, #6ebb06 100%);
+      background: linear-gradient(135deg, var(--dark) 0%, #267a49 40%, #3d7a08 75%, #6ebb06 100%);
       padding: 88px 64px;
       display: flex;
       align-items: center;
@@ -522,13 +613,8 @@
 
 <!-- ═══ NAV ═══ -->
 <nav>
-  <a href="/" class="logo">
-    <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="15" cy="15" r="14" fill="#0d1f13"/>
-      <circle cx="15" cy="15" r="10" fill="#3a7230" opacity=".55"/>
-      <path d="M11 9 L15 15 L11 21 H14 L18 15 L14 9 Z" fill="#fff"/>
-    </svg>
-    Krontiva
+  <a href="./" class="logo">
+    <img src="Krontiva-Black.png" alt="Krontiva Logo" style="width: 150px; height: auto;">
   </a>
   <ul class="nav-links">
     <li><a href="about/">Company</a></li>
@@ -543,40 +629,72 @@
 <!-- ═══ HERO ═══ -->
 <section class="hero">
   <div class="hero-bg"><div class="hero-orb"></div></div>
-  <div class="hero-content">
+  <div class="hero-card">
     <span class="hero-tag">Krontiva Africa</span>
-    <h1>Leading business and technology <em>transformation</em> across Africa</h1>
-    <p>Integrated consulting and technology services that modernize financial infrastructure and unlock strategic growth across the continent.</p>
-    <div class="hero-btns">
-      <a href="contact/" class="btn-solid">Request a consultation</a>
-      <a href="about/" class="btn-outline">Who We Are</a>
-    </div>
+    <h1>Leading business and technology <span class="highlight">transformation</span> <span class="highlight">across Africa</span></h1>
+  </div>
+  <div class="hero-btns">
+    <a href="contact/" class="btn-solid">Get Started</a>
+    <a href="contact/" class="btn-outline">Request a consultation</a>
   </div>
 </section>
 
 <!-- ═══ WHO WE ARE STRIP ═══ -->
-<div class="who-strip">
+<div class="who-strip" style="background:radial-gradient(at 20% 94%, #1e4a10 0, transparent 50%),radial-gradient(at 83% 8%, #1a3d0e 0, transparent 44%),radial-gradient(at 22% 9%, #0d1f13 0, transparent 50%),radial-gradient(at 83% 88%, #0d1f13 0, transparent 40%), var(--dark);">
+  <span class="strip-label">Who We Are</span>
   <h2>Driving Sustainable Business Transformation for Africa</h2>
-  <a href="about/" class="btn-ghost-white">
+  <a href="about/" class="btn-filled-green">
     Learn More
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
 </div>
 
-<!-- ═══ OUR SOLUTIONS ═══ -->
+<!-- ═══ VISION & MISSION ═══ -->
 <section class="section">
-  <p class="section-eyebrow">Our Products</p>
-  <h2 class="section-title">Our Solutions</h2>
+  <div style="text-align: center; margin-bottom: 48px;">
+    <p class="section-eyebrow">Our Purpose</p>
+    <h2 class="section-title">Vision, Mission & Values</h2>
+  </div>
+  <div class="cards-3">
+    <div class="value-card">
+      <h3>Our Vision</h3>
+      <p>To be the leading catalyst for business and technology transformation, unlocking Africa's full economic and social potential.</p>
+    </div>
+    <div class="value-card">
+      <h3>Our Mission</h3>
+      <p>To empower African organizations with innovative, sustainable, and context-aware solutions that drive growth, efficiency, and resilience.</p>
+    </div>
+    <div class="value-card">
+      <h3>Our Core Values</h3>
+      <p>Integrity, Innovation, and Impact. We are committed to ethical practices, pioneering solutions, and delivering measurable results for our clients and communities.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ KEY TRANSFORMATIONS ═══ -->
+<section class="section" id="services">
+  <p class="section-eyebrow">What we do</p>
+  <h2 class="section-title">Key Transformation Pillars</h2>
   <div class="cards-2">
     <div class="product-card">
-      <h3>KronGage</h3>
-      <p>KronGage is a Customer Engagement Platform built for the world. It is a collection of loosely coupled SaaS tools — a product with independently-built modules, all sharing a single identity, a single data layer, and a single operational backbone.</p>
-      <a href="#" class="btn-pill">Learn More →</a>
+      <h3>Workforce Transformation</h3>
+      <p>At Krontiva Africa, we recognize that a company's greatest asset is its people. Our Workforce Transformation services are designed to help businesses build agile, high-performing teams by leveraging digital tools, data-driven insights, and innovative workforce strategies.</p>
+      <a href="workforce-transformation/" class="btn-pill">Learn More →</a>
     </div>
     <div class="product-card">
-      <h3>KronFlow</h3>
-      <p>KronFlow is a payment workflow orchestration platform that combines visual workflow design, durable execution, financial message processing, and human workflow management into a single integrated solution.</p>
-      <a href="#" class="btn-pill">Learn More →</a>
+      <h3>Financial Transformation</h3>
+      <p>At Krontiva Africa, we empower businesses with innovative financial transformation solutions designed to optimize financial operations, enhance transparency, and drive sustainable growth.</p>
+      <a href="financial-transformation/" class="btn-pill">Learn More →</a>
+    </div>
+    <div class="product-card">
+      <h3>Operational Transformation</h3>
+      <p>At Krontiva Africa, we don't just adapt to change—we drive it. Our mission is to help businesses streamline and optimize their operations, making them not only more efficient but more resilient in an ever-evolving market.</p>
+      <a href="operational-transformation/" class="btn-pill">Learn More →</a>
+    </div>
+    <div class="product-card">
+      <h3>Customer Transformation</h3>
+      <p>At Krontiva Africa, we empower businesses to deliver exceptional, seamless, and personalized customer experiences. Through innovative technologies and data-driven strategies, we help organizations enhance engagement, build loyalty, and drive sustainable growth.</p>
+      <a href="customer-transformation/" class="btn-pill">Learn More →</a>
     </div>
   </div>
 </section>
@@ -586,46 +704,41 @@
   <div class="stats-row">
     <div class="stat"><h3>16+</h3><p>Projects completed successfully</p></div>
     <div class="stat"><h3>10+</h3><p>Industry experts &amp; consultants</p></div>
-    <div class="stat"><h3>20+</h3><p>Years of excellence</p></div>
+    <div class="stat"><h3>3+</h3><p>Years of excellence</p></div>
   </div>
   <a href="#use-cases" class="btn-circle">Explore</a>
 </div>
 
 <!-- ═══ USE CASES ═══ -->
-<section class="section use-cases" id="use-cases">
-  <p class="section-eyebrow">Explore</p>
-  <h2 class="section-title" style="text-align:center;margin-bottom:16px;">Use Cases</h2>
-  <p class="section-subtitle">We deliver integrated consulting and technology services that modernize financial infrastructure and unlock strategic growth across the continent.</p>
-  <div class="hex-row">
-    <div class="hex-item">
-      <div class="hex">
-        <svg viewBox="0 0 24 24"><path d="M12 2L4 7v7c0 4.4 3.4 8.5 8 9.5 4.6-1 8-5.1 8-9.5V7l-8-5z"/></svg>
-      </div>
-      <span>Insurance</span>
+<section id="use-cases">
+  <span class="explore-pill">EXPLORE</span>
+  <h2>Use Cases</h2>
+  <p style="max-width: 600px; margin: 0 auto 48px; font-size: 15px; text-align: center; color: #555;">We deliver integrated consulting and technology services that modernize financial infrastructure and unlock strategic growth across the continent.</p>
+  <div class="use-case-grid">
+    <div class="use-case-item">
+      <svg class="uc-hex" viewBox="0 0 100 115.47" xmlns="http://www.w3.org/2000/svg"><path class="uc-hex-bg" d="M50,1 95,25 95,75 50,99 5,75 5,25 Z"/></svg>
+      <svg class="uc-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M9 18H15V20H9z"/><path d="M12 2a8 8 0 0 0-5.66 13.66l.71.71L6.34 17l.71-.71A7.96 7.96 0 0 0 12 18a8 8 0 0 0 8-8c0-4.42-3.58-8-8-8z"/></svg>
+      <div class="uc-label">Strategy</div>
     </div>
-    <div class="hex-item">
-      <div class="hex">
-        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.5 0 1 .4 1 1V20c0 .6-.5 1-1 1C9.4 21 3 14.6 3 7c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-      </div>
-      <span>Telco</span>
+    <div class="use-case-item">
+      <svg class="uc-hex" viewBox="0 0 100 115.47" xmlns="http://www.w3.org/2000/svg"><path class="uc-hex-bg" d="M50,1 95,25 95,75 50,99 5,75 5,25 Z"/></svg>
+      <svg class="uc-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/></svg>
+      <div class="uc-label">Banks</div>
     </div>
-    <div class="hex-item">
-      <div class="hex">
-        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
-      </div>
-      <span>Healthcare</span>
+    <div class="use-case-item">
+      <svg class="uc-hex" viewBox="0 0 100 115.47" xmlns="http://www.w3.org/2000/svg"><path class="uc-hex-bg" d="M50,1 95,25 95,75 50,99 5,75 5,25 Z"/></svg>
+      <svg class="uc-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-2 .89-2 2v11c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zM10 6h4v2h-4V6z"/></svg>
+      <div class="uc-label">Corporates</div>
     </div>
-    <div class="hex-item">
-      <div class="hex">
-        <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
-      </div>
-      <span>Micro Finance</span>
+    <div class="use-case-item">
+      <svg class="uc-hex" viewBox="0 0 100 115.47" xmlns="http://www.w3.org/2000/svg"><path class="uc-hex-bg" d="M50,1 95,25 95,75 50,99 5,75 5,25 Z"/></svg>
+      <svg class="uc-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"/></svg>
+      <div class="uc-label">Remittances</div>
     </div>
-    <div class="hex-item">
-      <div class="hex">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
-      </div>
-      <span>Fintech</span>
+    <div class="use-case-item">
+      <svg class="uc-hex" viewBox="0 0 100 115.47" xmlns="http://www.w3.org/2000/svg"><path class="uc-hex-bg" d="M50,1 95,25 95,75 50,99 5,75 5,25 Z"/></svg>
+      <svg class="uc-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+      <div class="uc-label">Fintechs</div>
     </div>
   </div>
 </section>
@@ -671,50 +784,36 @@
 </section>
 
 <!-- ═══ FAQ ═══ -->
-<section class="section faq-wrap">
-  <h2 class="section-title" style="margin-bottom:36px;">Frequently Asked<br>Questions</h2>
-  <div class="faq-cols">
-
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <div class="faq-q-text"><span class="faq-num">01.</span><span>What is Krontiva?</span></div>
-        <div class="faq-icon">+</div>
-      </div>
-      <div class="faq-a">Krontiva Africa Limited is a premier business and technology consulting firm headquartered in Accra, Ghana. We are committed to delivering sustainable business transformation across Africa's rapidly evolving markets.</div>
+<section class="faq">
+  <div class="faq__heading">
+    <h2>Frequently Asked Questions</h2>
+  </div>
+  <div class="faq__list">
+    <div class="faq__item">
+      <span class="faq__number">01.</span>
+      <span class="faq__question">What services does Krontiva Africa offer?</span>
+      <span class="faq__dot">●</span>
     </div>
-
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <div class="faq-q-text"><span class="faq-num">02.</span><span>What is KronFlow?</span></div>
-        <div class="faq-icon">+</div>
-      </div>
-      <div class="faq-a">KronFlow is a payment workflow orchestration platform that combines visual workflow design, durable execution, financial message processing, and human workflow management into a single integrated solution.</div>
+    <div class="faq__item">
+      <span class="faq__number">02.</span>
+      <span class="faq__question">How can Krontiva help my business grow?</span>
+      <span class="faq__dot">●</span>
     </div>
-
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <div class="faq-q-text"><span class="faq-num">03.</span><span>What is KronGage?</span></div>
-        <div class="faq-icon">+</div>
-      </div>
-      <div class="faq-a">KronGage is a Customer Engagement Platform built for the world. It is a collection of loosely coupled SaaS tools sharing a single identity, a single data layer, and a single operational backbone.</div>
+    <div class="faq__item">
+      <span class="faq__number">03.</span>
+      <span class="faq__question">What is the process for starting a project?</span>
+      <span class="faq__dot">●</span>
     </div>
-
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <div class="faq-q-text"><span class="faq-num">04.</span><span>How is Krontiva shaping the future of African Tech?</span></div>
-        <div class="faq-icon">+</div>
-      </div>
-      <div class="faq-a">We bridge critical gaps in Africa's business landscape by delivering integrated consulting and technology services that help clients transform operations, enhance customer experiences, and build sustained competitive advantage.</div>
+    <div class="faq__item">
+      <span class="faq__number">04.</span>
+      <span class="faq__question">Do you offer customized solutions?</span>
+      <span class="faq__dot">●</span>
     </div>
-
-    <div class="faq-item" style="grid-column:1/-1;">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <div class="faq-q-text"><span class="faq-num">05.</span><span>What is the main benefit of using Krontiva's services?</span></div>
-        <div class="faq-icon">+</div>
-      </div>
-      <div class="faq-a">Krontiva combines strategic thinking with hands-on execution, ensuring that transformation initiatives deliver measurable results. We work alongside clients to implement solutions and build organisational capabilities for sustained success.</div>
+    <div class="faq__item">
+      <span class="faq__number">05.</span>
+      <span class="faq__question">What industries do you specialize in?</span>
+      <span class="faq__dot">●</span>
     </div>
-
   </div>
 </section>
 
@@ -727,9 +826,9 @@
 <footer>
   <div class="footer-grid">
     <div class="f-brand">
-      <a href="/" style="display:flex;align-items:center;gap:9px;color:#fff;font-weight:800;font-size:17px;letter-spacing:-.3px;">
+      <a href="./" style="display:flex;align-items:center;gap:9px;color:#fff;font-weight:800;font-size:17px;letter-spacing:-.3px;">
         <svg width="28" height="28" viewBox="0 0 30 30" fill="none">
-          <circle cx="15" cy="15" r="14" fill="#0d1f13"/>
+          <circle cx="15" cy="15" r="14" fill="#1b5e37"/>
           <circle cx="15" cy="15" r="10" fill="#3a7230" opacity=".6"/>
           <path d="M11 9 L15 15 L11 21 H14 L18 15 L14 9 Z" fill="#fff"/>
         </svg>
@@ -746,22 +845,15 @@
       <h4>Company</h4>
       <ul>
         <li><a href="about/">About Us</a></li>
-        <li><a href="#">Meet The Team</a></li>
-        <li><a href="#">Careers</a></li>
-      </ul>
-    </div>
-    <div class="f-col">
-      <h4>Solutions</h4>
-      <ul>
-        <li><a href="#">KronGage</a></li>
-        <li><a href="#">KronFlow</a></li>
+        <li><a href="#services">Services</a></li>
       </ul>
     </div>
     <div class="f-col">
       <h4>Resources</h4>
       <ul>
-        <li><a href="faq/">FAQs</a></li>
+        <li><a href="terms-of-service/">Terms of Service</a></li>
         <li><a href="privacy-policy/">Privacy Policy</a></li>
+        <li><a href="data-protection/">Data Protection</a></li>
       </ul>
     </div>
   </div>
