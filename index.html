@@ -56,63 +56,72 @@
 
     /* ─── NAV ─── */
     nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 28px;
-      height: 62px;
+      display: flex; align-items: center; gap: 2px;
+      padding: 0 10px 0 18px; height: 58px;
       background: rgba(255,255,255,.88);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
       border: 1px solid rgba(255,255,255,.55);
       box-shadow: 0 4px 32px rgba(0,0,0,.09);
       border-radius: 100px;
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 48px);
-      max-width: 560px;
-      z-index: 300;
-      transition: background .3s, box-shadow .3s;
+      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+      width: fit-content; max-width: calc(100% - 32px);
+      z-index: 300; transition: background .3s, box-shadow .3s;
     }
-    nav.scrolled {
-      background: rgba(255,255,255,.97);
-      box-shadow: 0 6px 40px rgba(0,0,0,.13);
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      font-weight: 800;
-      font-size: 17px;
-      color: var(--dark);
-      letter-spacing: -.3px;
-    }
+    nav.scrolled { background: rgba(255,255,255,.97); box-shadow: 0 6px 40px rgba(0,0,0,.13); }
+    .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; color: var(--dark); letter-spacing: -.3px; flex-shrink: 0; margin-right: 6px; }
     .logo svg { width: 30px; height: 30px; flex-shrink: 0; }
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-      font-size: 14px;
-      font-weight: 500;
-    }
-    .nav-links a { color: #374151; transition: color .2s; }
-    .nav-links a:hover { color: var(--dark); }
+    .nav-links { display: flex; gap: 2px; list-style: none; font-size: 14px; font-weight: 500; }
+    .nav-links a { color: #374151; transition: color .2s, background .2s; padding: 6px 14px; border-radius: 100px; white-space: nowrap; }
+    .nav-links a:hover { color: var(--dark); background: rgba(0,0,0,.04); }
     .btn-nav {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: var(--grad);
-      color: var(--white);
-      padding: 10px 22px;
-      border-radius: 100px;
-      font-size: 14px;
-      font-weight: 600;
-      transition: opacity .2s;
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--grad); color: var(--white);
+      padding: 9px 20px; border-radius: 100px; font-size: 14px; font-weight: 600;
+      transition: opacity .2s; margin-left: 6px; flex-shrink: 0; white-space: nowrap;
     }
     .btn-nav:hover { opacity: .88; }
     .btn-nav svg { width: 13px; height: 13px; }
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      width: 36px; height: 36px; cursor: pointer; padding: 6px;
+      border: none; background: none; border-radius: 50%; flex-shrink: 0; margin-left: 6px;
+    }
+    .hamburger span { display: block; width: 18px; height: 2px; background: var(--dark); border-radius: 2px; transition: transform .25s, opacity .25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* Mobile drawer */
+    .mobile-nav {
+      display: none; position: fixed; top: 88px; left: 16px; right: 16px;
+      background: rgba(255,255,255,.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-radius: 18px; border: 1px solid rgba(0,0,0,.07);
+      box-shadow: 0 16px 48px rgba(0,0,0,.13); padding: 12px; z-index: 298;
+      flex-direction: column; gap: 2px;
+      opacity: 0; transform: translateY(-8px);
+      transition: opacity .2s, transform .2s;
+      pointer-events: none;
+    }
+    .mobile-nav.open { display: flex; opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .mobile-nav > a, .mobile-pillars-link {
+      padding: 12px 16px; border-radius: 10px; font-size: 15px; font-weight: 500;
+      color: var(--text); transition: background .15s; text-decoration: none; display: block;
+    }
+    .mobile-nav > a:hover, .mobile-pillars-link:hover { background: var(--green-bg); }
+    .mobile-pillars-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 10px 16px 4px; display: block; }
+    .mobile-divider { height: 1px; background: var(--border); margin: 6px 0; }
+    .mobile-cta {
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      background: var(--grad); color: var(--white);
+      padding: 13px 20px; border-radius: 100px; font-size: 14px; font-weight: 600;
+      margin-top: 6px; text-decoration: none; transition: opacity .2s;
+    }
+    .mobile-cta:hover { opacity: .88; }
+    @media (max-width: 640px) {
+      .nav-links, .btn-nav { display: none !important; }
+      .hamburger { display: flex; }
+      nav { padding: 0 10px 0 14px; }
+    }
 
     /* ─── MEGA MENU ─── */
     .nav-item { position: relative; }
@@ -654,7 +663,21 @@
     Get Started
     <svg viewBox="0 0 13 13" fill="none"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="about/">About Us</a>
+  <div class="mobile-divider"></div>
+  <span class="mobile-pillars-label">Transformation Pillars</span>
+  <a href="customer-transformation/" class="mobile-pillars-link">Customer Transformation</a>
+  <a href="financial-transformation/" class="mobile-pillars-link">Financial Transformation</a>
+  <a href="operational-transformation/" class="mobile-pillars-link">Operational Transformation</a>
+  <a href="workforce-transformation/" class="mobile-pillars-link">Workforce Transformation</a>
+  <div class="mobile-divider"></div>
+  <a href="contact/" class="mobile-cta">Get Started <svg viewBox="0 0 13 13" fill="none" width="13" height="13"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</div>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
@@ -858,6 +881,12 @@
 </footer>
 
 <script>
+  /* Hamburger */
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', e => { e.stopPropagation(); hamburger.classList.toggle('open'); mobileNav.classList.toggle('open'); });
+  document.addEventListener('click', e => { if (!e.target.closest('nav') && !e.target.closest('#mobileNav')) { hamburger.classList.remove('open'); mobileNav.classList.remove('open'); } });
+
   /* Nav scroll behaviour */
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
