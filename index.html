@@ -164,15 +164,6 @@
       z-index: 0;
       opacity: .45;
     }
-    /* dark + gradient overlay on top of video */
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background:
-        linear-gradient(135deg, rgba(13,31,19,.88) 0%, rgba(29,77,20,.65) 45%, rgba(110,187,6,.28) 80%, rgba(156,235,50,.15) 100%),
-        linear-gradient(to top, rgba(13,31,19,.80) 0%, transparent 55%);
-    }
     .hero-bg {
       position: absolute;
       inset: 0;
@@ -207,19 +198,6 @@
       position: relative;
       z-index: 3;
       max-width: 620px;
-    }
-    .hero-tag {
-      display: inline-block;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.15);
-      color: rgba(255,255,255,.85);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 100px;
-      margin-bottom: 28px;
     }
     .hero-content h1 {
       font-size: clamp(38px, 5vw, 60px);
@@ -672,12 +650,9 @@
   <video class="hero-video" autoplay loop muted playsinline>
     <source src="media/krontivaWeb-stock.mp4" type="video/mp4" />
   </video>
-  <div class="hero-overlay"></div>
   <div class="hero-bg"><div class="hero-orb"></div></div>
   <div class="hero-content">
-    <span class="hero-tag">Krontiva Africa</span>
     <h1>Leading business and technology <em>transformation</em> across Africa</h1>
-    <p>Integrated consulting and technology services that modernize financial infrastructure and unlock strategic growth across the continent.</p>
     <div class="hero-btns">
       <a href="contact/" class="btn-solid">Request a consultation</a>
       <a href="about/" class="btn-outline">Who We Are</a>
