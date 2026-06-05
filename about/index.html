@@ -103,7 +103,18 @@
       flex-direction: column;
       align-items: center;
       gap: 0;
+      position: relative;
+      overflow: hidden;
     }
+    .hero-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: .10;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero > :not(.hero-video) { position: relative; z-index: 1; }
     .page-tag {
       display: inline-block;
       border: 1.5px solid var(--border);
@@ -326,6 +337,9 @@
 
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="top">
+  <video class="hero-video" autoplay loop muted playsinline>
+    <source src="../media/krontivaWeb-stock.mp4" type="video/mp4" />
+  </video>
   <span class="page-tag">Company</span>
   <h1>Delivering sustainable change for institutions and strategic growth sectors across Africa.</h1>
   <a href="#story" class="scroll-arrow" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'});return false;">
@@ -333,25 +347,6 @@
   </a>
 </section>
 
-<!-- ═══ DARK INTRO SECTION ═══ -->
-<section class="dark-section" id="story">
-  <div class="blob" style="width:420px;height:420px;top:10%;left:-100px;background:radial-gradient(circle,rgba(110,187,6,.18) 0%,transparent 70%);position:absolute;border-radius:50%;animation:blobDrift 18s ease-in-out infinite;pointer-events:none;"></div>
-  <div class="blob" style="width:320px;height:320px;bottom:5%;right:-60px;background:radial-gradient(circle,rgba(156,235,50,.13) 0%,transparent 70%);position:absolute;border-radius:50%;animation:blobDrift2 22s ease-in-out infinite;pointer-events:none;"></div>
-  <div class="dark-inner">
-    <div>
-      <h2>Driving Sustainable Business Transformation for Africa</h2>
-      <p>As a collective of innovative thinkers and change practitioners, we bring deep industry knowledge and extensive experience in complex transformation delivery. We partner with our clients to navigate the rapidly evolving African business landscape, helping them unlock new opportunities, optimise operations, and achieve lasting competitive advantage.</p>
-      <p>Our team combines strategic thinking with hands-on execution capabilities, ensuring that transformation initiatives deliver measurable business results. We don't just provide recommendations — we work alongside our clients to implement solutions and build organisational capabilities for sustained success.</p>
-    </div>
-    <div>
-      <h2>Our Vision &amp; Mission</h2>
-      <h3 style="font-size:13px;font-weight:700;color:var(--accent-lt);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;margin-top:4px;">Vision</h3>
-      <p>To be Africa's most trusted partner in business transformation, recognised for creating digitally connected ecosystems where financial services are accessible, affordable, and secure — empowering businesses and communities to thrive in the digital economy.</p>
-      <h3 style="font-size:13px;font-weight:700;color:var(--accent-lt);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;margin-top:28px;">Mission</h3>
-      <p>We bridge critical gaps in Africa's business landscape by delivering integrated consulting and technology services that enable our clients to:</p>
-    </div>
-  </div>
-</section>
 
 <!-- ═══ VISION & MISSION FULL ═══ -->
 <section class="vm-section">
@@ -406,17 +401,6 @@
   </div>
 </section>
 
-<!-- ═══ MEET THE TEAM CTA ═══ -->
-<section class="team-cta">
-  <div class="blob" style="width:460px;height:460px;top:-60px;left:-80px;background:radial-gradient(circle,rgba(110,187,6,.2) 0%,transparent 70%);position:absolute;border-radius:50%;animation:blobDrift 16s ease-in-out infinite;pointer-events:none;"></div>
-  <div class="blob" style="width:340px;height:340px;bottom:-40px;right:5%;background:radial-gradient(circle,rgba(156,235,50,.14) 0%,transparent 70%);position:absolute;border-radius:50%;animation:blobDrift2 19s ease-in-out infinite;pointer-events:none;"></div>
-  <p>Meet our team</p>
-  <h2>Integrity you can trust, proficiency you can depend on.</h2>
-  <a href="#" class="btn-green">
-    Learn More
-    <svg viewBox="0 0 13 13" fill="none"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
-</section>
 
 <!-- ═══ FOOTER ═══ -->
 <footer>
@@ -426,11 +410,7 @@
         <img src="../footer-logo.png" alt="Krontiva" style="height:38px;width:auto;">
       </a>
       <p>We deliver integrated consulting and technology services that modernize financial infrastructure and unlock strategic growth across the continent.</p>
-      <div class="f-social">
-        <a href="#">Facebook</a>
-        <a href="#">Instagram</a>
-        <a href="#">LinkedIn</a>
-      </div>
+      <div class="f-social"><a href="https://www.facebook.com/krontiva" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/krontiva/" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/company/krontiva/" target="_blank" rel="noopener">LinkedIn</a></div>
     </div>
     <div class="f-col">
       <h4>Company</h4>
