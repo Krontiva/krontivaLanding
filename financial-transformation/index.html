@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financial Transformation — Krontiva Africa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --dark:#0d1f13; --dark-mid:#193326; --accent:#3a7230; --accent-lt:#6db84a; --green-bg:#f2f8ef; --text:#111827; --body:#4b5563; --muted:#6b7280; --border:#e5e7eb; --white:#ffffff; --grad:linear-gradient(135deg,#2a5c1a 0%,#6ebb06 65%,#9ceb32 100%); --grad-text:linear-gradient(135deg,#6ebb06 0%,#9ceb32 100%); }
+    body { font-family:'Inter',sans-serif; color:var(--text); background:var(--white); }
+    a { text-decoration:none; color:inherit; }
+    @keyframes gradFlow { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes blobDrift { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(30px,-20px) scale(1.08)} 66%{transform:translate(-20px,15px) scale(.94)} }
+    @keyframes blobDrift2 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-25px,20px) scale(1.1)} 66%{transform:translate(15px,-15px) scale(.92)} }
+    nav { display:flex; align-items:center; gap:2px; padding:0 10px 0 18px; height:58px; background:rgba(255,255,255,.88); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,.55); box-shadow:0 4px 32px rgba(0,0,0,.09); border-radius:100px; position:fixed; top:20px; left:50%; transform:translateX(-50%); width:fit-content; max-width:calc(100% - 32px); z-index:300; transition:background .3s, box-shadow .3s; }
+    nav.scrolled { background:rgba(255,255,255,.97); box-shadow:0 6px 40px rgba(0,0,0,.13); }
+    .logo { display:flex; align-items:center; gap:9px; font-weight:800; font-size:17px; color:var(--dark); letter-spacing:-.3px; flex-shrink:0; margin-right:6px; }
+    .nav-links { display:flex; gap:2px; list-style:none; font-size:14px; font-weight:500; }
+    .nav-links a { color:#374151; transition:color .2s, background .2s; padding:6px 14px; border-radius:100px; white-space:nowrap; }
+    .nav-links a:hover { color:var(--dark); background:rgba(0,0,0,.04); }
+    .btn-nav { display:inline-flex; align-items:center; gap:7px; background:var(--grad); color:var(--white); padding:9px 20px; border-radius:100px; font-size:14px; font-weight:600; transition:opacity .2s; margin-left:6px; flex-shrink:0; }
+    .btn-nav:hover { opacity:.88; }
+    .btn-nav svg { width:13px; height:13px; }
+    .hamburger { display:none; flex-direction:column; justify-content:center; gap:5px; width:36px; height:36px; cursor:pointer; padding:6px; border:none; background:none; border-radius:50%; flex-shrink:0; margin-left:6px; }
+    .hamburger span { display:block; width:18px; height:2px; background:var(--dark); border-radius:2px; transition:transform .25s, opacity .25s; }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .mobile-nav { display:none; position:fixed; top:88px; left:16px; right:16px; background:rgba(255,255,255,.97); backdrop-filter:blur(20px); border-radius:18px; border:1px solid rgba(0,0,0,.07); box-shadow:0 16px 48px rgba(0,0,0,.13); padding:12px; z-index:298; flex-direction:column; gap:2px; pointer-events:none; opacity:0; transition:opacity .2s; }
+    .mobile-nav.open { display:flex; opacity:1; pointer-events:auto; }
+    .mobile-nav > a, .mobile-pillars-link { padding:12px 16px; border-radius:10px; font-size:15px; font-weight:500; color:var(--text); transition:background .15s; display:block; }
+    .mobile-nav > a:hover, .mobile-pillars-link:hover { background:var(--green-bg); }
+    .mobile-pillars-label { font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); padding:10px 16px 4px; display:block; }
+    .mobile-divider { height:1px; background:var(--border); margin:6px 0; }
+    .mobile-cta { display:flex; align-items:center; justify-content:center; gap:7px; background:var(--grad); color:var(--white); padding:13px 20px; border-radius:100px; font-size:14px; font-weight:600; margin-top:6px; transition:opacity .2s; }
+    .mobile-cta:hover { opacity:.88; }
+    .nav-item { position:relative; }
+    .nav-item > a { display:flex; align-items:center; gap:4px; }
+    .nav-item > a .chev { width:10px; height:6px; transition:transform .2s; flex-shrink:0; }
+    .nav-item:hover > a .chev { transform:rotate(180deg); }
+    .mega-menu { position:fixed; top:84px; left:50%; transform:translateX(-50%); width:230px; background:var(--white); border-radius:12px; padding:6px; box-shadow:0 8px 32px rgba(0,0,0,.1); border:1px solid rgba(0,0,0,.07); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .15s, visibility .15s; z-index:500; }
+    .nav-item:hover .mega-menu { opacity:1; visibility:visible; pointer-events:auto; }
+    .mega-link { display:block; padding:9px 14px; border-radius:8px; font-size:14px; font-weight:500; color:var(--text); text-decoration:none; border-left:2px solid transparent; transition:background .12s, border-color .12s, color .12s; }
+    .mega-link:hover { background:var(--green-bg); border-left-color:#6ebb06; color:var(--dark); }
+    @media (max-width:640px) { .nav-links, .btn-nav { display:none !important; } .hamburger { display:flex; } nav { padding:0 10px 0 14px; } }
+    .hero { background:linear-gradient(135deg, var(--dark) 0%, #1a3d10 40%, #3d7a08 70%, #6ebb06 100%); background-size:300% 300%; animation:gradFlow 14s ease infinite; padding:140px 64px 88px; position:relative; overflow:hidden; }
+    .hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(156,235,50,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(156,235,50,.06) 1px,transparent 1px); background-size:52px 52px; }
+    .hero-inner { position:relative; z-index:1; max-width:680px; }
+    .page-tag { display:inline-block; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:rgba(255,255,255,.85); font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:5px 14px; border-radius:100px; margin-bottom:24px; }
+    .hero h1 { font-size:clamp(34px,5vw,58px); font-weight:800; color:var(--white); line-height:1.1; letter-spacing:-.5px; margin-bottom:20px; }
+    .hero h1 em { font-style:normal; background:var(--grad-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .hero p { font-size:16px; color:rgba(255,255,255,.65); line-height:1.7; max-width:540px; margin-bottom:36px; }
+    .hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
+    .btn-solid { background:var(--grad); color:var(--white); padding:13px 28px; border-radius:100px; font-weight:600; font-size:14px; transition:opacity .2s; }
+    .btn-solid:hover { opacity:.85; }
+    .btn-outline { border:1.5px solid rgba(255,255,255,.4); color:var(--white); padding:13px 28px; border-radius:100px; font-weight:600; font-size:14px; transition:border-color .2s; }
+    .btn-outline:hover { border-color:rgba(255,255,255,.8); }
+    .overview { display:grid; grid-template-columns:1.2fr 1fr; gap:80px; padding:80px 64px; align-items:start; }
+    @media (max-width:860px) { .overview { grid-template-columns:1fr; gap:40px; } }
+    .overview-eyebrow { font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; background:var(--grad-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; display:inline-block; margin-bottom:14px; }
+    .overview h2 { font-size:clamp(26px,3vw,38px); font-weight:800; line-height:1.2; letter-spacing:-.3px; margin-bottom:20px; }
+    .overview p { font-size:15px; color:var(--body); line-height:1.8; margin-bottom:16px; }
+    .stat-pills { display:flex; flex-direction:column; gap:20px; }
+    .stat-pill { background:var(--green-bg); border:1px solid #c8e8b0; border-radius:14px; padding:20px 24px; }
+    .stat-pill .num { font-size:36px; font-weight:800; letter-spacing:-1px; line-height:1; margin-bottom:6px; background:var(--grad-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; display:inline-block; }
+    .stat-pill .label { font-size:13px; color:var(--body); line-height:1.5; }
+    .services { padding:0 64px 88px; }
+    .services-eyebrow { font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; background:var(--grad-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; display:inline-block; margin-bottom:14px; }
+    .services h2 { font-size:clamp(26px,3vw,38px); font-weight:800; letter-spacing:-.3px; margin-bottom:48px; }
+    .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    @media (max-width:860px) { .services-grid { grid-template-columns:1fr; } }
+    .service-card { border:1px solid var(--border); border-radius:14px; padding:32px; transition:box-shadow .2s, border-color .2s; }
+    .service-card:hover { box-shadow:0 6px 24px rgba(0,0,0,.06); border-color:#c8e8b0; }
+    .svc-icon { width:44px; height:44px; border-radius:11px; background:var(--grad); display:flex; align-items:center; justify-content:center; margin-bottom:20px; }
+    .svc-icon svg { width:20px; height:20px; stroke:#fff; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    .service-card h3 { font-size:17px; font-weight:700; margin-bottom:12px; letter-spacing:-.1px; }
+    .service-card p { font-size:14px; color:var(--body); line-height:1.7; }
+    .approach { background:var(--green-bg); padding:80px 64px; }
+    .approach-eyebrow { font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; background:var(--grad-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; display:inline-block; margin-bottom:14px; }
+    .approach h2 { font-size:clamp(26px,3vw,38px); font-weight:800; letter-spacing:-.3px; margin-bottom:48px; }
+    .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:32px; }
+    @media (max-width:860px) { .steps { grid-template-columns:1fr 1fr; } }
+    @media (max-width:520px) { .steps { grid-template-columns:1fr; } }
+    .step { display:flex; flex-direction:column; gap:14px; }
+    .step-num { font-size:36px; font-weight:800; background:var(--grad-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; display:inline-block; line-height:1; }
+    .step h3 { font-size:17px; font-weight:700; letter-spacing:-.1px; }
+    .step p { font-size:14px; color:var(--body); line-height:1.7; }
+    .cta-strip { background:linear-gradient(135deg, var(--dark) 0%, #1a3d0e 30%, #3d7a08 60%, #6ebb06 85%, #9ceb32 100%); background-size:300% 300%; animation:gradFlow 12s ease infinite; padding:80px 64px; text-align:center; position:relative; overflow:hidden; }
+    .cta-strip h2 { font-size:clamp(28px,4vw,48px); font-weight:800; color:var(--white); letter-spacing:-.4px; margin-bottom:12px; }
+    .cta-strip p { font-size:15px; color:rgba(255,255,255,.6); margin-bottom:32px; }
+    .blob { position:absolute; border-radius:50%; pointer-events:none; }
+    footer { background:var(--dark); border-top:1px solid rgba(255,255,255,.07); padding:64px 64px 0; color:rgba(255,255,255,.75); }
+    .footer-grid { display:grid; grid-template-columns:2.2fr 1fr 1fr 1fr; gap:48px; padding-bottom:52px; border-bottom:1px solid rgba(255,255,255,.08); }
+    @media (max-width:860px) { .footer-grid { grid-template-columns:1fr 1fr; } }
+    .f-brand p { font-size:13px; line-height:1.7; color:rgba(255,255,255,.5); margin:16px 0 20px; max-width:260px; }
+    .f-social { display:flex; gap:20px; }
+    .f-social a { font-size:13px; color:rgba(255,255,255,.5); transition:color .2s; }
+    .f-social a:hover { color:var(--white); }
+    .f-col h4 { font-size:13px; font-weight:700; color:var(--white); margin-bottom:18px; }
+    .f-col ul { list-style:none; display:flex; flex-direction:column; gap:12px; }
+    .f-col ul a { font-size:13px; color:rgba(255,255,255,.5); transition:color .2s; }
+    .f-col ul a:hover { color:var(--white); }
+    .footer-bar { display:flex; justify-content:space-between; padding:18px 0; font-size:12px; color:rgba(255,255,255,.35); }
+    .footer-bar a { color:rgba(255,255,255,.35); transition:color .2s; }
+    .footer-bar a:hover { color:rgba(255,255,255,.7); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="logo"><img src="../nav-logo.png" alt="Krontiva" style="height:34px;width:auto;"></a>
+  <ul class="nav-links">
+    <li><a href="../about/">About Us</a></li>
+    <li class="nav-item">
+      <a href="../#services">Transformation Pillars <svg class="chev" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega-menu">
+        <a href="../customer-transformation/" class="mega-link">Customer Transformation</a>
+        <a href="../financial-transformation/" class="mega-link">Financial Transformation</a>
+        <a href="../operational-transformation/" class="mega-link">Operational Transformation</a>
+        <a href="../workforce-transformation/" class="mega-link">Workforce Transformation</a>
+      </div>
+    </li>
+  </ul>
+  <a href="../contact/" class="btn-nav">Get Started <svg viewBox="0 0 13 13" fill="none"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="../about/">About Us</a>
+  <div class="mobile-divider"></div>
+  <span class="mobile-pillars-label">Transformation Pillars</span>
+  <a href="../customer-transformation/" class="mobile-pillars-link">Customer Transformation</a>
+  <a href="../financial-transformation/" class="mobile-pillars-link">Financial Transformation</a>
+  <a href="../operational-transformation/" class="mobile-pillars-link">Operational Transformation</a>
+  <a href="../workforce-transformation/" class="mobile-pillars-link">Workforce Transformation</a>
+  <div class="mobile-divider"></div>
+  <a href="../contact/" class="mobile-cta">Get Started</a>
+</div>
+
+<section class="hero">
+  <div class="blob" style="width:440px;height:440px;top:-80px;right:-80px;background:radial-gradient(circle,rgba(156,235,50,.18) 0%,transparent 70%);animation:blobDrift 18s ease-in-out infinite;"></div>
+  <div class="hero-inner">
+    <span class="page-tag">Financial Transformation</span>
+    <h1>Build the Financial Infrastructure <em>Africa Deserves</em></h1>
+    <p>We modernise financial operations for banks, fintechs, and enterprises — enabling faster transactions, stronger compliance, and sustainable growth in the digital economy.</p>
+    <div class="hero-btns">
+      <a href="../contact/" class="btn-solid">Request a Consultation</a>
+      <a href="../about/" class="btn-outline">About Krontiva</a>
+    </div>
+  </div>
+</section>
+
+<section class="overview">
+  <div>
+    <p class="overview-eyebrow">Why it matters</p>
+    <h2>Africa's financial sector is transforming — fast</h2>
+    <p>Digital payments, mobile money, and open banking are reshaping how businesses and consumers interact with financial services across the continent. Organisations that fail to modernise risk being left behind.</p>
+    <p>We help financial institutions and enterprises replace legacy systems, automate complex processes, and build the compliance frameworks needed to operate confidently in a rapidly evolving regulatory environment.</p>
+  </div>
+  <div class="stat-pills">
+    <div class="stat-pill"><div class="num">30%</div><div class="label">average reduction in operational costs following financial process automation</div></div>
+    <div class="stat-pill"><div class="num">99.9%</div><div class="label">payment uptime achieved by clients on our modernised infrastructure</div></div>
+    <div class="stat-pill"><div class="num">25+</div><div class="label">financial institutions and fintechs served across sub-Saharan Africa</div></div>
+  </div>
+</section>
+
+<section class="services">
+  <p class="services-eyebrow">Our Services</p>
+  <h2>How We Help</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+      <h3>Payment Systems Modernisation</h3>
+      <p>Replace legacy payment rails with real-time, scalable infrastructure that supports digital transactions at volume — reducing settlement times and opening new revenue streams.</p>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <h3>Financial Process Automation</h3>
+      <p>Automate reconciliation, reporting, and compliance workflows to reduce errors, cut costs, and free your finance teams to focus on higher-value strategic work.</p>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h3>Risk &amp; Compliance</h3>
+      <p>Build robust frameworks for regulatory compliance, fraud detection, and financial risk management — giving boards and regulators confidence in your controls.</p>
+    </div>
+  </div>
+</section>
+
+<section class="approach">
+  <p class="approach-eyebrow">Our Approach</p>
+  <h2>How We Work</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">01</div><h3>Assess</h3><p>Audit your current financial systems, processes, and data flows to identify critical gaps, inefficiencies, and compliance risks.</p></div>
+    <div class="step"><div class="step-num">02</div><h3>Architect</h3><p>Design a modern, scalable financial technology stack tailored to your business model, regulatory environment, and growth ambitions.</p></div>
+    <div class="step"><div class="step-num">03</div><h3>Implement</h3><p>Deploy solutions in carefully sequenced phases to minimise disruption to live operations, with rigorous testing at every stage.</p></div>
+    <div class="step"><div class="step-num">04</div><h3>Govern</h3><p>Establish ongoing governance, monitoring dashboards, and optimisation routines that keep your financial infrastructure healthy and compliant.</p></div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="blob" style="width:400px;height:400px;top:-60px;left:-80px;background:radial-gradient(circle,rgba(110,187,6,.2) 0%,transparent 70%);animation:blobDrift 16s ease-in-out infinite;"></div>
+  <div style="position:relative;z-index:1;">
+    <h2>Ready to modernise your financial operations?</h2>
+    <p>Let's build the infrastructure your business needs to grow.</p>
+    <a href="../contact/" class="btn-solid">Request a Consultation</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="f-brand">
+      <a href="../"><img src="../footer-logo.png" alt="Krontiva" style="height:38px;width:auto;"></a>
+      <p>Leading business and technology transformation across Africa.</p>
+      <div class="f-social"><a href="#">LinkedIn</a><a href="#">Twitter</a><a href="#">Facebook</a></div>
+    </div>
+    <div class="f-col"><h4>Company</h4><ul><li><a href="../about/">About Us</a></li><li><a href="../contact/">Contact</a></li></ul></div>
+    <div class="f-col"><h4>Transformation</h4><ul><li><a href="../customer-transformation/">Customer</a></li><li><a href="./">Financial</a></li><li><a href="../operational-transformation/">Operational</a></li><li><a href="../workforce-transformation/">Workforce</a></li></ul></div>
+    <div class="f-col"><h4>Legal</h4><ul><li><a href="../privacy-policy/">Privacy Policy</a></li><li><a href="../terms-of-service/">Terms of Service</a></li></ul></div>
+  </div>
+  <div class="footer-bar"><span>Krontiva Africa LTD &copy; 2023 &ndash; 2026</span><a href="../terms-of-service/">Terms of Service</a></div>
+</footer>
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', e => { e.stopPropagation(); hamburger.classList.toggle('open'); mobileNav.classList.toggle('open'); });
+  document.addEventListener('click', e => { if (!e.target.closest('nav') && !e.target.closest('#mobileNav')) { hamburger.classList.remove('open'); mobileNav.classList.remove('open'); } });
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+</script>
+</body>
+</html>
