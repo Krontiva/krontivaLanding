@@ -36,17 +36,18 @@
 
     /* ─── NAV ─── */
     nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 64px;
-      height: 66px;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 300;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; height: 62px;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.55);
+      box-shadow: 0 4px 32px rgba(0,0,0,.09);
+      border-radius: 100px;
+      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 48px); max-width: 1200px;
+      z-index: 300; transition: background .3s, box-shadow .3s;
     }
+    nav.scrolled { background: rgba(255,255,255,.97); box-shadow: 0 6px 40px rgba(0,0,0,.13); }
     .logo {
       display: flex;
       align-items: center;
@@ -84,7 +85,7 @@
     /* ─── HERO ─── */
     .hero {
       background: linear-gradient(135deg, var(--dark) 0%, #267a49 55%, #3a7a08 85%, #6ebb06 100%);
-      padding: 80px 64px 72px;
+      padding: 140px 64px 72px;
       position: relative; overflow: hidden;
     }
     .hero::before {
@@ -258,5 +259,11 @@
     </div>
   </footer>
 
+<script>
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+</script>
 </body>
 </html>
