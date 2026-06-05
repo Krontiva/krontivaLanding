@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Workforce Transformation — Krontiva Africa</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>Workforce Transformation — Krontiva Africa</title>  <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --dark:#0d1f13; --dark-mid:#193326; --accent:#3a7230; --accent-lt:#6db84a; --green-bg:#f2f8ef; --text:#111827; --body:#4b5563; --muted:#6b7280; --border:#e5e7eb; --white:#ffffff; --grad:linear-gradient(135deg,#2a5c1a 0%,#6ebb06 65%,#9ceb32 100%); --grad-text:linear-gradient(135deg,#6ebb06 0%,#9ceb32 100%); }
-    body { font-family:'Inter',sans-serif; color:var(--text); background:var(--white); }
+    body { font-family: 'Manrope', sans-serif; color:var(--text); background:var(--white); }
+    h1, h2, h3, h4, h5, h6 { font-family: 'DM Serif Display', serif; font-weight: 400; }
+
     a { text-decoration:none; color:inherit; }
     @keyframes gradFlow { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
     @keyframes blobDrift { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(30px,-20px) scale(1.08)} 66%{transform:translate(-20px,15px) scale(.94)} }
@@ -104,6 +105,42 @@
     .footer-bar { display:flex; justify-content:space-between; padding:18px 0; font-size:12px; color:rgba(255,255,255,.35); }
     .footer-bar a { color:rgba(255,255,255,.35); transition:color .2s; }
     .footer-bar a:hover { color:rgba(255,255,255,.7); }
+  
+    /* ─── MOBILE ─── */
+    @media (max-width: 640px) {
+      /* Global section padding */
+      .section          { padding: 56px 24px !important; }
+      .apart-section    { padding: 56px 24px; }
+      .values-section   { padding: 56px 24px; }
+      .faq-body         { padding: 40px 24px 64px; }
+      .featured-wrap    { padding: 40px 24px 0; }
+      .articles-wrap    { padding: 32px 24px 64px; }
+      .filter-bar       { padding: 24px; }
+      .search-wrap      { padding: 32px 24px 0; }
+      .tabs-wrap        { padding: 24px 24px 0; }
+      .terms-layout     { padding: 40px 24px 64px; gap: 32px; }
+      .policy-body      { padding: 40px 24px 64px; }
+      .contact-wrap     { padding: 48px 24px 64px; }
+      .overview         { padding: 56px 24px; gap: 40px; }
+      .services         { padding: 0 24px 56px; }
+      .approach         { padding: 56px 24px; }
+      .cta-strip        { padding: 64px 24px; }
+      /* Hero */
+      .hero             { padding: 110px 24px 64px !important; min-height: auto !important; }
+      /* Stats */
+      .stats-wrap       { padding: 56px 24px; }
+      .stats-inner      { flex-direction: column; gap: 0; }
+      .stat-card        { padding: 28px 0; }
+      .stat-divider     { width: 60%; height: 1px; margin: 0 auto; }
+      /* News grid */
+      .news-grid        { grid-template-columns: 1fr; }
+      /* Footer */
+      footer            { padding: 48px 24px 0; }
+      .footer-grid      { grid-template-columns: 1fr 1fr; gap: 32px; padding-bottom: 40px; }
+      .footer-bar       { flex-direction: column; gap: 8px; text-align: center; }
+      /* Pillars grid */
+      .pillars-grid     { grid-template-columns: 1fr; gap: 16px; }
+    }
   </style>
 </head>
 <body>
