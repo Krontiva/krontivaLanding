@@ -350,24 +350,75 @@
     }
     .btn-pill:hover { background: var(--accent); color: var(--white); }
 
-    /* ─── PILLARS ─── */
-    .pillars-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
-    @media (max-width: 900px) { .pillars-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 520px)  { .pillars-grid { grid-template-columns: 1fr; } }
-    .pillar-card {
-      border: 1px solid var(--border); border-radius: 14px; padding: 28px 24px;
-      display: flex; flex-direction: column; gap: 12px;
-      text-decoration: none; color: inherit;
-      transition: box-shadow .2s, border-color .2s, transform .2s;
+    /* ─── PILLARS SCROLL ─── */
+    .pillars-scroll {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
     }
-    .pillar-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.07); border-color: #c8e8b0; transform: translateY(-2px); }
-    .pillar-icon { width: 44px; height: 44px; border-radius: 11px; background: var(--grad); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .pillar-icon svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .pillar-card h3 { font-size: 16px; font-weight: 700; letter-spacing: -.1px; line-height: 1.3; }
-    .pillar-card > p { font-size: 14px; color: var(--body); line-height: 1.65; flex: 1; }
-    .pillar-cta { font-size: 13px; font-weight: 600; color: var(--accent); display: flex; align-items: center; gap: 5px; margin-top: 4px; }
-    .pillar-cta svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s; }
-    .pillar-card:hover .pillar-cta svg { transform: translateX(3px); }
+    .pillars-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .pillars-sticky video,
+    .pillars-sticky img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .pillars-sticky::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent 60%, var(--white) 100%);
+      pointer-events: none;
+    }
+    .pillars-list { padding: 0 72px 0 64px; }
+    .pillar-row {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 16px;
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pillar-row:last-child { border-bottom: none; }
+    .pillar-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 56px;
+      color: #e5e7eb;
+      line-height: 1;
+      padding-top: 6px;
+      user-select: none;
+    }
+    .pillar-body {}
+    .pillar-body h3 {
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .pillar-body h3 .g { color: #6ebb06; display: block; }
+    .pillar-body p {
+      font-size: 16px;
+      color: var(--body);
+      line-height: 1.8;
+      margin-bottom: 28px;
+      max-width: 420px;
+    }
+    .pillar-learn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: #6ebb06;
+      transition: gap .2s;
+    }
+    .pillar-learn:hover { gap: 10px; }
+    .pillar-learn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    @media (max-width: 860px) {
+      .pillars-scroll { grid-template-columns: 1fr; }
+      .pillars-sticky { display: none; }
+      .pillars-list { padding: 0 24px; }
+      .pillar-row { grid-template-columns: 48px 1fr; gap: 12px; padding: 48px 0; }
+      .pillar-num { font-size: 40px; }
+    }
 
     /* ─── STATS ─── */
     .stats-wrap {
@@ -645,7 +696,7 @@
       .footer-grid      { grid-template-columns: 1fr 1fr; gap: 32px; padding-bottom: 40px; }
       .footer-bar       { flex-direction: column; gap: 8px; text-align: center; }
       /* Pillars grid */
-      .pillars-grid     { grid-template-columns: 1fr; gap: 16px; }
+      .pillar-row       { padding: 40px 0; grid-template-columns: 40px 1fr; }
     }
   </style>
 </head>
@@ -706,36 +757,50 @@
 
 
 <!-- ═══ TRANSFORMATION PILLARS ═══ -->
-<section class="section" id="services">
-  <p class="section-eyebrow">What We Do</p>
-  <h2 class="section-title">Our Transformation Pillars</h2>
-  <div class="pillars-grid">
-    <a href="customer-transformation/" class="pillar-card">
-      <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-      <h3>Customer Transformation</h3>
-      <p>Reimagine the customer journey end-to-end — building loyalty, reducing friction, and delivering personalised experiences that drive sustainable growth.</p>
-      <span class="pillar-cta">Explore <svg viewBox="0 0 13 13"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a>
-    <a href="financial-transformation/" class="pillar-card">
-      <div class="pillar-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
-      <h3>Financial Transformation</h3>
-      <p>Modernise financial infrastructure with real-time payments, automation, and robust compliance frameworks built for Africa's digital economy.</p>
-      <span class="pillar-cta">Explore <svg viewBox="0 0 13 13"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a>
-    <a href="operational-transformation/" class="pillar-card">
-      <div class="pillar-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-      <h3>Operational Transformation</h3>
-      <p>Streamline, automate, and future-proof your operations — eliminating bottlenecks, integrating systems, and embedding resilience at every layer.</p>
-      <span class="pillar-cta">Explore <svg viewBox="0 0 13 13"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a>
-    <a href="workforce-transformation/" class="pillar-card">
-      <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-      <h3>Workforce Transformation</h3>
-      <p>Build agile, high-performing teams equipped for the digital era — through upskilling, organisational design, and modern HR technology.</p>
-      <span class="pillar-cta">Explore <svg viewBox="0 0 13 13"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a>
+<div id="services" class="pillars-scroll">
+  <!-- Sticky left image -->
+  <div class="pillars-sticky">
+    <video autoplay loop muted playsinline>
+      <source src="media/krontivaWeb-stock.mp4" type="video/mp4" />
+    </video>
   </div>
-</section>
+
+  <!-- Scrolling right content -->
+  <div class="pillars-list">
+    <div class="pillar-row">
+      <span class="pillar-num">01</span>
+      <div class="pillar-body">
+        <h3><span class="g">Customer</span>Transformation</h3>
+        <p>At Krontiva Africa, we empower businesses through innovative technologies and data-driven strategies — helping organisations enhance engagement, build loyalty, and drive sustainable growth across Africa and beyond.</p>
+        <a href="customer-transformation/" class="pillar-learn">Learn more <svg viewBox="0 0 13 13"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+    <div class="pillar-row">
+      <span class="pillar-num">02</span>
+      <div class="pillar-body">
+        <h3><span class="g">Financial</span>Transformation</h3>
+        <p>We don't just adapt to change — we drive it. Our mission is to help businesses modernise financial operations, automate workflows, and implement smart payment systems to improve efficiency and resilience in Africa's digital economy.</p>
+        <a href="financial-transformation/" class="pillar-learn">Learn more <svg viewBox="0 0 13 13"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+    <div class="pillar-row">
+      <span class="pillar-num">03</span>
+      <div class="pillar-body">
+        <h3><span class="g">Operational</span>Transformation</h3>
+        <p>We help organisations streamline their operations to achieve superior efficiency and resilience — leveraging cutting-edge technology to drive value, reduce friction, and future-proof every layer of the business.</p>
+        <a href="operational-transformation/" class="pillar-learn">Learn more <svg viewBox="0 0 13 13"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+    <div class="pillar-row">
+      <span class="pillar-num">04</span>
+      <div class="pillar-body">
+        <h3><span class="g">Workforce</span>Transformation</h3>
+        <p>A company's greatest asset is its people. We build agile, high-performing teams by leveraging digital tools, data-driven insights, and innovative workforce strategies — empowering employees to thrive in the digital era.</p>
+        <a href="workforce-transformation/" class="pillar-learn">Learn more <svg viewBox="0 0 13 13"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ═══ STATS ═══ -->
 <div class="stats-wrap">
