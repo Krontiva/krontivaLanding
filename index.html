@@ -566,6 +566,12 @@
       margin-left: 8px;
       vertical-align: middle;
     }
+    .cta-word {
+      display: inline-block;
+      transition: opacity .3s ease, transform .3s ease;
+    }
+    .cta-word.exit { opacity: 0; transform: translateY(-12px); }
+    .cta-word.enter { opacity: 0; transform: translateY(12px); }
 
     /* ─── FOOTER ─── */
     footer {
@@ -812,7 +818,7 @@
     <div style="position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(110,187,6,.12),transparent 65%);bottom:-120px;right:-80px;animation:blobDrift2 11s ease-in-out infinite;"></div>
     <div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent 30%,rgba(255,255,255,.03) 50%,transparent 70%);animation:shimmerSlide 6s ease-in-out infinite;"></div>
   </div>
-  <h2>Ready for <em>transformation</em> <span class="cta-dot"></span></h2>
+  <h2>Ready for <em><span class="cta-word" id="ctaWord">transformation</span></em> <span class="cta-dot"></span></h2>
 </section>
 
 <!-- ═══ FOOTER ═══ -->
@@ -859,6 +865,23 @@
 </footer>
 
 <script>
+  /* Rotating CTA word */
+  (function() {
+    const words = ['transformation', 'efficiency', 'ownership', 'excellence'];
+    const el = document.getElementById('ctaWord');
+    let i = 0;
+    setInterval(() => {
+      el.classList.add('exit');
+      setTimeout(() => {
+        i = (i + 1) % words.length;
+        el.textContent = words[i];
+        el.classList.remove('exit');
+        el.classList.add('enter');
+        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('enter')));
+      }, 300);
+    }, 2800);
+  })();
+
   /* Hamburger */
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobileNav');
