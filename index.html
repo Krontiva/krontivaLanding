@@ -130,14 +130,25 @@
     .nav-item > a .chev { width: 10px; height: 6px; transition: transform .2s; flex-shrink: 0; }
     .nav-item:hover > a .chev { transform: rotate(180deg); }
     .mega-menu {
-      position: fixed; top: 84px; left: 50%; transform: translateX(-50%);
-      width: 230px; background: var(--white); border-radius: 12px; padding: 6px;
+      position: fixed; top: 78px; left: 50%; transform: translateX(-50%);
+      width: 230px; background: var(--white); border-radius: 12px; padding: 10px 6px 6px;
       box-shadow: 0 8px 32px rgba(0,0,0,.1), 0 2px 8px rgba(0,0,0,.04);
       border: 1px solid rgba(0,0,0,.07);
       opacity: 0; visibility: hidden; pointer-events: none;
       transition: opacity .15s, visibility .15s; z-index: 500;
     }
     .nav-item:hover .mega-menu { opacity: 1; visibility: visible; pointer-events: auto; }
+    .nav-item::after {
+      content: '';
+      position: fixed;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 230px;
+      height: 20px;
+      background: transparent;
+      z-index: 499;
+    }
     .mega-link {
       display: block; padding: 9px 14px; border-radius: 8px;
       font-size: 14px; font-weight: 500; color: var(--text); text-decoration: none;
@@ -663,6 +674,67 @@
     .footer-bar a { color: rgba(255,255,255,.35); transition: color .2s; }
     .footer-bar a:hover { color: rgba(255,255,255,.7); }
   
+    /* ─── ABOUT INTRO ─── */
+    .about-intro {
+      padding: 120px 64px 80px;
+      text-align: center;
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-intro-content {
+      position: relative;
+      z-index: 1;
+    }
+    .about-intro-badge {
+      display: inline-block;
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 18px;
+      border-radius: 100px;
+      letter-spacing: .06em;
+      margin-bottom: 28px;
+    }
+    .about-intro-title {
+      font-size: clamp(32px, 4vw, 52px);
+      color: var(--dark);
+      letter-spacing: -.4px;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .about-intro-body {
+      font-size: 16px;
+      color: var(--body);
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto 40px;
+    }
+    .about-intro-worldmap {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
+      pointer-events: none;
+      display: block;
+    }
+    .about-intro::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 100%; height: 350px;
+      background: radial-gradient(ellipse at bottom center, rgba(109,184,74,.06) 0%, transparent 65%);
+      z-index: 0;
+      pointer-events: none;
+    }
+    @media (max-width: 640px) {
+      .about-intro { padding: 80px 24px 60px; }
+      .about-intro-worldmap { width: 100%; height: auto; }
+    }
+
     /* ─── MOBILE ─── */
     @media (max-width: 640px) {
       /* Global section padding */
@@ -756,12 +828,44 @@
 
 
 
+<!-- ═══ ABOUT INTRO ═══ -->
+<section id="about-intro" class="about-intro">
+  <div class="about-intro-content">
+    <span class="about-intro-badge">Who we are</span>
+    <h2 class="about-intro-title"><span style="color: var(--accent-lt);">Krontiva</span> Africa</h2>
+    <p class="about-intro-body">Pioneering transformation across Africa and the World through robust and scalable AI and Digital Solutions.</p>
+    <a href="about/index.html" class="btn-solid">Learn More</a>
+  </div>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" class="about-intro-worldmap" aria-hidden="true">
+    <g fill="none" stroke="#6db84a" stroke-width="1" opacity="0.18" stroke-linejoin="round" stroke-linecap="round">
+      <!-- Greenland -->
+      <path d="M453,103 L527,47 L473,23 L400,43 Z"/>
+      <!-- North America -->
+      <path d="M43,123 L83,63 L333,37 L413,127 L387,153 L347,183 L333,217 L310,247 L300,247 L250,233 L210,197 L187,177 L187,140 L153,110 L93,110 Z"/>
+      <!-- South America -->
+      <path d="M347,273 L393,263 L410,277 L487,313 L483,327 L460,377 L427,417 L390,453 L377,483 L357,483 L350,460 L353,423 L367,380 L330,313 L333,303 L347,293 Z"/>
+      <!-- Europe -->
+      <path d="M570,177 L582,180 L610,157 L623,153 L653,173 L680,180 L687,167 L700,147 L667,117 L650,67 L620,93 L583,107 L567,127 L595,147 L573,153 Z"/>
+      <!-- Africa -->
+      <path d="M582,181 L637,177 L683,200 L713,197 L723,227 L743,260 L770,263 L737,303 L733,337 L717,387 L687,413 L662,413 L640,393 L640,320 L627,303 L607,283 L583,283 L547,263 L557,210 Z"/>
+      <!-- Asia -->
+      <path d="M720,177 L747,177 L777,167 L800,133 L823,77 L917,53 L1077,67 L1160,100 L1143,127 L1030,187 L967,233 L947,267 L947,297 L867,273 L833,227 L793,227 L750,260 L713,203 Z"/>
+      <!-- India peninsula -->
+      <path d="M800,230 L833,220 L853,253 L867,273 L843,283 L823,253 Z"/>
+      <!-- Australia -->
+      <path d="M980,383 L1037,340 L1083,333 L1110,383 L1110,410 L1087,430 L1053,417 L983,407 Z"/>
+      <!-- New Zealand -->
+      <path d="M1177,413 L1183,423 L1177,433 L1170,423 Z"/>
+    </g>
+  </svg>
+</section>
+
 <!-- ═══ TRANSFORMATION PILLARS ═══ -->
 <div id="services" class="pillars-scroll">
   <!-- Sticky left image -->
   <div class="pillars-sticky">
     <video autoplay loop muted playsinline preload="auto">
-      <source src="transformation_video_h264.mp4" type="video/mp4" />
+      <source src="new pillars video.mp4" type="video/mp4" />
     </video>
   </div>
 

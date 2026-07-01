@@ -87,6 +87,17 @@
       transition: opacity .15s, visibility .15s; z-index: 500;
     }
     .nav-item:hover .mega-menu { opacity: 1; visibility: visible; pointer-events: auto; }
+    .nav-item::after {
+      content: '';
+      position: fixed;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 230px;
+      height: 20px;
+      background: transparent;
+      z-index: 499;
+    }
     .mega-link {
       display: block; padding: 9px 14px; border-radius: 8px;
       font-size: 14px; font-weight: 500; color: var(--text); text-decoration: none;
