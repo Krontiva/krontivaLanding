@@ -80,7 +80,8 @@
     .nav-item:hover > a .chev { transform: rotate(180deg); }
     .mega-menu {
       position: fixed; top: 84px; left: 50%; transform: translateX(-50%);
-      width: 230px; background: var(--white); border-radius: 12px; padding: 6px;
+      width: 560px; background: var(--white); border-radius: 12px; padding: 6px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
       box-shadow: 0 8px 32px rgba(0,0,0,.1), 0 2px 8px rgba(0,0,0,.04);
       border: 1px solid rgba(0,0,0,.07);
       opacity: 0; visibility: hidden; pointer-events: none;
@@ -93,18 +94,18 @@
       top: 60px;
       left: 50%;
       transform: translateX(-50%);
-      width: 230px;
+      width: 560px;
       height: 20px;
       background: transparent;
       z-index: 499;
     }
     .mega-link {
-      display: block; padding: 9px 14px; border-radius: 8px;
+      display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-radius: 8px;
       font-size: 14px; font-weight: 500; color: var(--text); text-decoration: none;
       border-left: 2px solid transparent;
       transition: background .12s, border-color .12s, color .12s;
     }
-    .mega-link:hover { background: var(--green-bg); border-left-color: #6ebb06; color: var(--dark); }
+    .mega-link:hover { background: #f3f4f6; border-left-color: #9ca3af; color: var(--dark); }
 
     /* ─── HERO ─── */
     .hero {
@@ -307,10 +308,10 @@
     <li class="nav-item">
       <a href="../#services">Transformation Pillars <svg class="chev" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             <div class="mega-menu">
-        <a href="../customer-transformation/" class="mega-link">Customer Transformation</a>
-        <a href="../financial-transformation/" class="mega-link">Financial Transformation</a>
-        <a href="../operational-transformation/" class="mega-link">Operational Transformation</a>
-        <a href="../workforce-transformation/" class="mega-link">Workforce Transformation</a>
+        <a href="../customer-transformation/" class="mega-link"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Customer Transformation</a>
+        <a href="../financial-transformation/" class="mega-link"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg>Financial Transformation</a>
+        <a href="../operational-transformation/" class="mega-link"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>Operational Transformation</a>
+        <a href="../workforce-transformation/" class="mega-link"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Workforce Transformation</a>
       </div>
     </li>
   </ul>
